@@ -10,12 +10,13 @@ import {UsersServices} from '../services/users.services';
 import { NewUserComponent } from './new-user/new-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const appRoutes:Routes=[
   {path:'login',component:LoginComponent},
   {path:'users',component:UsersComponent},
   {path:'new-user',component:NewUserComponent},
-  {path:'editUser/:id',component:EditUserComponent},
+  {path:'editUser/:login',component:EditUserComponent},
   {path:'',redirectTo:'/login',pathMatch:'full'}
 
 ];
@@ -26,7 +27,8 @@ const appRoutes:Routes=[
     AboutComponent,
     NewUserComponent,
     EditUserComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes),HttpModule,FormsModule
