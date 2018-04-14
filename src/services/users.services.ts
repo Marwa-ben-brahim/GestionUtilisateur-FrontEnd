@@ -11,8 +11,8 @@ getUsers(motCle:string,page:number,size:number){
 return this.http.get("http://localhost:8080/chercherUsers?mc="+motCle+"&size="+size+"&page="+page)
   .map(resp=>resp.json())
 }
-  getUser(id:number){
-    return this.http.get("http://localhost:8080/users/"+id)
+  getUser(login:string){
+    return this.http.get("http://localhost:8080/users/"+login)
       .map(resp=>resp.json())
   }
 saveUser(user:User){
@@ -20,11 +20,15 @@ saveUser(user:User){
       .map(resp=>resp.json())
   }
 updateUser(user:User){
-    return this.http.put("http://localhost:8080/users/"+user.id,user)
+    return this.http.put("http://localhost:8080/users/"+user.login,user)
       .map(resp=>resp.json())
   }
-deleteUser(id:number){
-    return this.http.delete("http://localhost:8080/users/"+id)
+deleteUser(login:string){
+    return this.http.delete("http://localhost:8080/users/"+login)
+      .map(resp=>resp.json())
+  }
+  isUser(login:string,motpasse:string){
+    return this.http.get("http://localhost:8080/chercherUser?mc="+login+"&motpasse="+motpasse)
       .map(resp=>resp.json())
   }
 }

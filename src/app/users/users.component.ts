@@ -38,14 +38,14 @@ size:number=5;
 this.currentPage=i;
 this.doSearch();
   }
-  onEditUser(id:number){
-this.router.navigate(['editUser',id]);
+  onEditUser(login:string){
+this.router.navigate(['editUser',login]);
   }
   onDeleteUser(u:User){
     let confirm=window.confirm("Est vous sûre?");
     if(confirm==true)
     {
-      this.usersservices.deleteUser(u.id)
+      this.usersservices.deleteUser(u.login)
         .subscribe(data=> {
           this.pageUsers.content.splice(
             this.pageUsers.content.indexOf(u),1

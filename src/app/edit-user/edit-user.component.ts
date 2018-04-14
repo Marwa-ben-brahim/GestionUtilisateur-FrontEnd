@@ -11,12 +11,12 @@ import {UsersServices} from '../../services/users.services';
 export class EditUserComponent implements OnInit {
   mode:number=1;
   user:User=new User();
-  idUser:number;
+  idUser:string;
   constructor(public activatedRoute:ActivatedRoute,
               public userService:UsersServices,
               public router:Router)
   {
-  this.idUser=activatedRoute.snapshot.params['id'];
+  this.idUser=activatedRoute.snapshot.params['login'];
   }
 
   ngOnInit() {
