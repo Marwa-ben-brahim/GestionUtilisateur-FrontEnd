@@ -22,10 +22,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   doSearch(){
-    this.userService.isUser(this.login,this.motpasse)
+    this.userService.getUser(this.login)
       .subscribe(data=>{
         alert("Success de s'authentifier");
-        this.router.navigate(['users']);
+        this.router.navigate(['index']);
         console.log(data)
       },err=>{
         console.log(err);
