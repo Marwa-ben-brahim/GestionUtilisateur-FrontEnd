@@ -20,13 +20,30 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css","../node_modules/bootstrap/dist/css/bootstrap.css"
+        "styles.css",
+        "../node_modules/bootstrap/dist/css/bootstrap.css",
+        "../node_modules/waves/dist/css/waves.css",
+        "./assets/css/all-themes.css",
+        "../node_modules/animate/css/animate.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/chart.js/dist/Chart.js",
+        "../node_modules/hammerjs/hammer.min.js",
+        "../node_modules/waves/dist/waves.js",
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/jquery-slimscroll/jquery.slimscroll.js",
+        "../node_modules/bootstrap-select/dist/js/bootstrap-select.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.js",
+        "../node_modules/bootstrap-notify/bootstrap-notify.js",
+        "./assets/js/admin.js",
+        "./assets/js/demo.js",
+        "./assets/js/index.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
+
       }
     }
   ],
@@ -55,7 +72,8 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
-    "component": {}
+    "styleExt": "scss",
+    "component": {
+    }
   }
 }
