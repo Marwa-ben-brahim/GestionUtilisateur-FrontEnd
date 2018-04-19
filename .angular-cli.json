@@ -43,7 +43,6 @@
       "environments": {
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
-
       }
     }
   ],
@@ -72,7 +71,7 @@
     }
   },
   "defaults": {
-    "styleExt": "scss",
+    "styleExt": "css",
     "component": {
     }
   }
