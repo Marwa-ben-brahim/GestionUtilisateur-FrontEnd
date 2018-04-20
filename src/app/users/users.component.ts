@@ -31,7 +31,13 @@ size:number=5;
   }
   chercher()
   {
-   this.doSearch();
+    this.usersservices.getAllUser()
+      .subscribe(data=>{
+        this.pageUsers=data;
+        this.pages=new Array(data.totalPages);
+      },err=>{
+        console.log(err);
+      })
   }
   gotopage(i:number)
   {

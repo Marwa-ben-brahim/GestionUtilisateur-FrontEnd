@@ -9,12 +9,11 @@
     </div>
 <table class="table table-striped">
   <tr>
-    <th>Login</th><th>Mot de Passe</th><th>E-mail</th><th>Date de Creation</th>
+    <th>Login</th><th>Mot de Passe</th><th>Date de Creation</th>
   </tr>
   <tr *ngFor="let u of pageUsers?.content">
     <td>{{u.login}}</td>
     <td>{{u.motpasse}}</td>
-    <td>{{u.email}}</td>
     <td>{{u.datecreation}}</td>
     <td><a (click)="onEditUser(u.login)" class="clickable">Modifier</a> </td>
     <td><a (click)="onDeleteUser(u)" class="clickable">Supprimer</a> </td>

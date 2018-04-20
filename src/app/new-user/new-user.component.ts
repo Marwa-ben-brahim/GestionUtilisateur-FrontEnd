@@ -13,12 +13,23 @@ import {Http} from '@angular/http';
 export class NewUserComponent implements OnInit {
 user:User=new User();
 personnels:Array<Personnel>=new Array<Personnel>();
-  constructor(public http:Http, public usersservices:UsersServices, public router:Router) { }
+  constructor(public http:Http, public userservices:UsersServices, public router:Router) { }
 
   ngOnInit() {
+    this.AfficherPersonnel();
+  }
+  AfficherPersonnel()
+  {
+    this.userservices.getAllPersonnel()
+      .subscribe(data=>{
+      this.personnels=data;
+        console.log(data)
+      },err=>{
+        console.log(err);
+      });
   }
 saveUser(){
-  this.userservice.saveUser(this.user)
+  this.userservices.saveUser(this.user)
     .subscribe(data=>{
       alert("Success d'ajout");
       this.router.navigate(['users']);
