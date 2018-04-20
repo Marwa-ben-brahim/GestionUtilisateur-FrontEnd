@@ -31,4 +31,14 @@ deleteUser(login:string){
     return this.http.get("http://localhost:8080/chercherUser?mc="+login+"&motpasse="+motpasse)
       .map(resp=>resp.json())
   }
+  getAllUser()
+  {
+    return this.http.get("http://localhost:8080/Allusers")
+      .map(resp=>resp.json())
+  }
+  getAllPersonnel()
+  {
+    return this.http.get("http://localhost:8080/Personnels")
+      .map(resp=>resp.json())
+  }
 }

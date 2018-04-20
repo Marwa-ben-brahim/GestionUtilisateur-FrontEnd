@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {User} from '../../model/model.user';
 import {UsersServices} from '../../services/users.services';
 import {Router} from '@angular/router';
+import {Personnel} from '../../model/model.personnel';
+import {Http} from '@angular/http';
 
 @Component({
   selector: 'app-new-user',
@@ -10,7 +12,8 @@ import {Router} from '@angular/router';
 })
 export class NewUserComponent implements OnInit {
 user:User=new User();
-  constructor(public userservice:UsersServices, public router:Router) { }
+personnels:Array<Personnel>=new Array<Personnel>();
+  constructor(public http:Http, public usersservices:UsersServices, public router:Router) { }
 
   ngOnInit() {
   }

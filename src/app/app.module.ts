@@ -15,16 +15,9 @@ import { IndexComponent } from './index/index.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
-
-const appRoutes:Routes=[
-  {path:'login',component:LoginComponent},
-  {path:'users',component:UsersComponent},
-  {path:'new-user',component:NewUserComponent},
-  {path:'editUser/:login',component:EditUserComponent},
-  {path:'navbar',component:NavbarComponent},
-  {path:'index',component:IndexComponent},
-  {path:'',redirectTo:'/login',pathMatch:'full'}
-];
+import { EnseignantPermanentComponent } from './enseignant-permanent/enseignant-permanent.component';
+import {AppRoutingModule} from './app.routing';
+import { DiplomeComponent } from './diplome/diplome.component';
 @NgModule ({
   declarations: [
     AppComponent,
@@ -37,12 +30,16 @@ const appRoutes:Routes=[
     IndexComponent,
     NavbarComponent,
     FooterComponent,
-    SideBarComponent
+    SideBarComponent,
+    EnseignantPermanentComponent,
+    DiplomeComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes),
-    HttpModule,FormsModule
+    RouterModule,
+    AppRoutingModule,
+    HttpModule,
+    FormsModule
   ],
   schemas:[NO_ERRORS_SCHEMA],
   providers: [UsersServices],
