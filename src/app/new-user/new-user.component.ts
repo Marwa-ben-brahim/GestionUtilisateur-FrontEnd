@@ -13,10 +13,10 @@ import {Http} from '@angular/http';
 export class NewUserComponent implements OnInit {
 user:User=new User();
 personnels:Array<Personnel>=new Array<Personnel>();
-  constructor(public http:Http, public userservices:UsersServices, public router:Router) { }
+  constructor(public http:Http, public userservices:UsersServices, public router:Router) { this.AfficherPersonnel();}
 
   ngOnInit() {
-    this.AfficherPersonnel();
+
   }
   AfficherPersonnel()
   {
