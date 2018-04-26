@@ -23,7 +23,7 @@ personnels:Array<Personnel>=new Array<Personnel>();
     this.userservices.getAllPersonnel()
       .subscribe(data=>{
       this.personnels=data;
-        console.log(data)
+        console.log(data);
       },err=>{
         console.log(err);
       });
@@ -33,7 +33,7 @@ saveUser(){
     .subscribe(data=>{
       alert("Success d'ajout");
       this.router.navigate(['users']);
-    console.log(data)
+    console.log(data);
     },err=>{
       console.log(err);
     });

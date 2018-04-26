@@ -61,20 +61,27 @@
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="adresse">Adresse :</label>
+        <div class="col-sm-10">
         <textarea class="form-control" id="adresse" rows="3"></textarea>
+        </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-sm-2"  for="codep">Code Postal :</label>
-        <input type="codep" class="form-control" id="codep">
+        <label class="control-label col-sm-2" for="codep">Code Postal:</label>
+        <div class="col-sm-10">
+          <input type="codep" class="form-control" id="codep">
+        </div>
       </div>
-      <div class="form-group">
-        <label for="etatc">Etat Civil:</label>
-        <select class="control-label col-sm-2" id="etatc">
-          <option>Célébataire</option>
-          <option>Marié(e)</option>
-          <option>Divorcé(e)</option>
-          <option>Veuf</option>
-        </select>
+      <div class="form-group ">
+        <label class="col-sm-2 col-form-label">Etat civil:</label>
+        <label class="radio-inline">
+          <input type="radio" name="optradio">Célibataire
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="optradio">Marié(e)
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="optradio">Divorcé(e)
+        </label>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="nomcj">Nom Conjoint:</label>
@@ -83,13 +90,41 @@
         </div>
       </div>
       <div class="form-group">
+        <label class="control-label col-sm-2" for="profcj">Profession Conjoint:</label>
+        <div class="col-sm-10">
+          <input type="profcj" class="form-control" id="profcj">
+        </div>
+      </div>
+      <div class="form-group">
         <label class="control-label col-sm-2" for="spec">Spécialité:</label>
         <div class="col-sm-10">
           <input type="spec" class="form-control" id="spec">
         </div>
       </div>
+      <div class="form-group">
+        <label class="col-sm-2" for="etatc">Département:</label>
+        <div class="col-sm-10">
+          <select class="form-control" id="dip">
+            <option>Sciences Economiques et de Gestion</option>
+            <option>Technologie de l'Informatique</option>
+            <option>Génie des Procédés</option>
+            <option>Génie Civil</option>
+            <option>Génie Mécanique</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2" for="etatc">Plan de carriére:</label>
+        <div class="col-sm-10">
+          <select class="form-control" id="dip">
+            <option>Directeur de l'Institut</option>
+            <option>Directeur des Etudes</option>
+            <option>Directeur du Département</option>
+          </select>
+        </div>
+      </div>
       <div class="form-group ">
-        <label class="col-2 col-form-label">Etat:</label>
+        <label class="col-sm-2 col-form-label">Etat:</label>
         <label class="radio-inline">
           <input type="radio" name="optradio">Actif
         </label>
@@ -98,23 +133,29 @@
         </label>
       </div>
       <div class="form-group">
-        <label for="etatc">Diplôme:</label>
+        <label class="col-sm-2" for="etatc">Diplôme:</label>
+        <div class="col-sm-10">
         <select class="form-control" id="dip">
           <option>Doctorat</option>
           <option>Mastére</option>
           <option>Licence</option>
         </select>
+        </div>
       </div>
       <div class="form-group">
-        <label for="etatc">Grade:</label>
+        <label class="col-sm-2" for="etatc">Grade:</label>
+        <div class="col-sm-10">
         <select class="form-control" id="grd">
           <option>Professeur-Technologue</option>
           <option>Maitre-Technologue</option>
           <option>Technologue</option>
           <option>Enseignant</option>
         </select>
+        </div>
       </div>
     </form>
+    <button type="submit" class="btn btn-info" (click)="Enregistrer()">Ajouter</button>
+    <button type="submit" class="btn btn-info" (click)="annuler()">Annuler</button>
   </div>
 </div>
 

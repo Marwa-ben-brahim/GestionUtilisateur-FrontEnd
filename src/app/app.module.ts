@@ -18,6 +18,8 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 import { EnseignantPermanentComponent } from './enseignant-permanent/enseignant-permanent.component';
 import {AppRoutingModule} from './app.routing';
 import { DiplomeComponent } from './diplome/diplome.component';
+import {EnfantServices} from '../services/enfant.services';
+import {DiplomeServices} from '../services/diplome.services';
 @NgModule ({
   declarations: [
     AppComponent,
@@ -42,7 +44,7 @@ import { DiplomeComponent } from './diplome/diplome.component';
     FormsModule
   ],
   schemas:[NO_ERRORS_SCHEMA],
-  providers: [UsersServices],
+  providers: [UsersServices,EnfantServices,DiplomeServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

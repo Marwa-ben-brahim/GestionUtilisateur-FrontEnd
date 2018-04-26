@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Enfant} from '../../model/model.enfant';
+import {EnfantServices} from '../../services/enfant.services';
 
 @Component({
   selector: 'app-enseignant-permanent',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EnseignantPermanentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private enfantservice:EnfantServices) { }
 
   ngOnInit() {
   }
+  Enregistrer(){
 
+}
+annuler(){
+  }
 }

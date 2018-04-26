@@ -28,7 +28,7 @@ const appRoutes:Routes=[
   {path:'navbar',component:NavbarComponent},
   {path:'sidebar',component:SideBarComponent},
   {path:'index',component:IndexComponent},
-  {path:'index/enseignantpermanent',component:EnseignantPermanentComponent},
+  {path:'enseignantpermanent',component:EnseignantPermanentComponent},
   {path:'diplome',component:DiplomeComponent},
   {path:'',redirectTo:'/login',pathMatch:'full'}
 
