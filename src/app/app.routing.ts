@@ -33,7 +33,6 @@ const appRoutes:Routes=[
   {path:'diplome',component:DiplomeComponent},
   {path:'editDiplome/:idDip',component:EditDiplomeComponent},
   {path:'',redirectTo:'/login',pathMatch:'full'}
-
 ];
 @NgModule({
   imports: [
@@ -48,4 +47,3 @@ export class AppRoutingModule { }
 export const routingComponents = [DashboardComponent,
   LoginComponent, UsersComponent, NewUserComponent,
   EditUserComponent,NavbarComponent,SideBarComponent,IndexComponent,EnseignantPermanentComponent,DiplomeComponent]
-
