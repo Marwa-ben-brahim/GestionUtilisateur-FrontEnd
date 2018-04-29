@@ -11,7 +11,7 @@ import {UsersServices} from '../../services/users.services';
 export class EditUserComponent implements OnInit {
   mode:number=1;
   user:User=new User();
-  idUser:string;
+  idUser:string="";
   constructor(public activatedRoute:ActivatedRoute,
               public userService:UsersServices,
               public router:Router)

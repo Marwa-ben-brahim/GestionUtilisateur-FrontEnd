@@ -15,10 +15,12 @@ import { IndexComponent } from './index/index.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
-import { DiplomesComponent } from './diplomes/diplomes.component';
-import {AppRoutingModule} from "./app.routing";
-import {DiplomeServices} from "../services/diplome.services";
-
+import { EnseignantPermanentComponent } from './enseignant-permanent/enseignant-permanent.component';
+import {AppRoutingModule} from './app.routing';
+import { DiplomeComponent } from './diplome/diplome.component';
+import {EnfantServices} from '../services/enfant.services';
+import {DiplomeServices} from '../services/diplome.services';
+import { EditDiplomeComponent } from './edit-diplome/edit-diplome.component';
 @NgModule ({
   declarations: [
     AppComponent,
@@ -32,16 +34,19 @@ import {DiplomeServices} from "../services/diplome.services";
     NavbarComponent,
     FooterComponent,
     SideBarComponent,
-    DiplomesComponent
+    EnseignantPermanentComponent,
+    DiplomeComponent,
+    EditDiplomeComponent
   ],
   imports: [
     BrowserModule,
     RouterModule,
     AppRoutingModule,
-    HttpModule,FormsModule
+    HttpModule,
+    FormsModule
   ],
   schemas:[NO_ERRORS_SCHEMA],
-  providers: [UsersServices,DiplomeServices],
+  providers: [UsersServices,EnfantServices,DiplomeServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

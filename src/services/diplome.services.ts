@@ -24,7 +24,7 @@ export class DiplomeServices{
       .map(resp=>resp.json())
   }
   updateDiplome(diplome:Diplome){
-    return this.http.put("http://localhost:8080/ModifierDiplome/"+diplome.id,diplome)
+    return this.http.put("http://localhost:8080/ModifierDiplome/"+diplome.idDip,diplome)
       .map(resp=>resp.json())
   }
   deleteDiplome(id:number){

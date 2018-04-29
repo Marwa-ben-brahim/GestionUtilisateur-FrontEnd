@@ -1,4 +1,4 @@
 export class Diplome{
-  id:number=0;
+  idDip:number=0;
   titre:string="";
 }

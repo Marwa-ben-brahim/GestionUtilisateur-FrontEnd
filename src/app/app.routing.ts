@@ -12,10 +12,12 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {CommonModule} from "@angular/common";
-import {IndexComponent} from "./index/index.component";
-import {NavbarComponent} from "./navbar/navbar.component";
-import {DiplomesComponent} from "./diplomes/diplomes.component";
-import {SideBarComponent} from "./side-bar/side-bar.component";
+import {EnseignantPermanentComponent} from './enseignant-permanent/enseignant-permanent.component';
+import {NavbarComponent} from './navbar/navbar.component';
+import {IndexComponent} from './index/index.component';
+import {SideBarComponent} from './side-bar/side-bar.component';
+import {DiplomeComponent} from './diplome/diplome.component';
+import {EditDiplomeComponent} from './edit-diplome/edit-diplome.component';
 
 
 const appRoutes:Routes=[
@@ -25,20 +27,23 @@ const appRoutes:Routes=[
   {path:'new-user',component:NewUserComponent},
   {path:'editUser/:login',component:EditUserComponent},
   {path:'navbar',component:NavbarComponent},
-  {path:'side-bar',component:SideBarComponent},
+  {path:'sidebar',component:SideBarComponent},
   {path:'index',component:IndexComponent},
-  {path:'diplome',component:DiplomesComponent},
+  {path:'enseignantpermanent',component:EnseignantPermanentComponent},
+  {path:'diplome',component:DiplomeComponent},
+  {path:'editDiplome/:idDip',component:EditDiplomeComponent},
   {path:'',redirectTo:'/login',pathMatch:'full'}
-
 ];
-
 @NgModule({
   imports: [
     CommonModule,
     BrowserModule,
     RouterModule.forRoot(appRoutes)
   ],
-  exports: [
-  ],
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }
+
+export const routingComponents = [DashboardComponent,
+  LoginComponent, UsersComponent, NewUserComponent,
+  EditUserComponent,NavbarComponent,SideBarComponent,IndexComponent,EnseignantPermanentComponent,DiplomeComponent]
