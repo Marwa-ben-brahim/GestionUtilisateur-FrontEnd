@@ -26,7 +26,7 @@
       <tr *ngFor="let d of diplomes">
         <td>{{d.idDip}}</td>
         <td>{{d.titre}}</td>
-        <td><a (click)="onEditDiplome(d.id)" class="clickable">Modifier</a> </td>
+        <td><a (click)="onEditDiplome(d.idDip)" class="clickable">Modifier</a> </td>
         <td><a (click)="onDeleteDiplome(d)" class="clickable">Supprimer</a> </td>
       </tr></table>
   </div>

@@ -17,6 +17,7 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {IndexComponent} from './index/index.component';
 import {SideBarComponent} from './side-bar/side-bar.component';
 import {DiplomeComponent} from './diplome/diplome.component';
+import {EditDiplomeComponent} from './edit-diplome/edit-diplome.component';
 
 
 const appRoutes:Routes=[
@@ -30,6 +31,7 @@ const appRoutes:Routes=[
   {path:'index',component:IndexComponent},
   {path:'enseignantpermanent',component:EnseignantPermanentComponent},
   {path:'diplome',component:DiplomeComponent},
+  {path:'editDiplome/:idDip',component:EditDiplomeComponent},
   {path:'',redirectTo:'/login',pathMatch:'full'}
 
 ];

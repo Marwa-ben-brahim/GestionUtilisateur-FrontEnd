@@ -20,6 +20,7 @@ import {AppRoutingModule} from './app.routing';
 import { DiplomeComponent } from './diplome/diplome.component';
 import {EnfantServices} from '../services/enfant.services';
 import {DiplomeServices} from '../services/diplome.services';
+import { EditDiplomeComponent } from './edit-diplome/edit-diplome.component';
 @NgModule ({
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import {DiplomeServices} from '../services/diplome.services';
     FooterComponent,
     SideBarComponent,
     EnseignantPermanentComponent,
-    DiplomeComponent
+    DiplomeComponent,
+    EditDiplomeComponent
   ],
   imports: [
     BrowserModule,

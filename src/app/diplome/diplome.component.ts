@@ -57,8 +57,8 @@ ajouter(){
     this.currentPage=i;
     this.doSearch();
   }
-  onEditDiplome(id:number){
-    //this.router.navigate(['editUser',id]);
+  onEditDiplome(idDip:number){
+    this.router.navigate(['editDiplome',idDip]);
   }
   onDeleteDiplome(d:Diplome){
     let confirm=window.confirm("Etes-vous sûre?");
