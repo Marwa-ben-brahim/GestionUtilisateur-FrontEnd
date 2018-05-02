@@ -1,0 +1,34 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">Ajouter Type Congé</div>
+  <div class="panel-body">
+    <div>
+      <form class="form-inline">
+        <div class="form-group">
+          <label class="control-label">Nom de congé :</label>
+          <input id="msg" type="text" class="form-control" name="msg" placeholder="Nom de Congé" [(ngModel)]="typeConge.nomCng">
+          <button type="button" class="btn btn-primary btn-md" (click)="ajouter()">Ajouter type congé</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Afficher Congé</div>
+    <div class="panel-body">
+      <div class="form-group">
+        <label>Mot Clé</label>
+        <input type="text" [(ngModel)]="motCle"/>
+        <button class="btn btn-primary" (click)="doSearch()">Chercher</button>
+      </div>
+      <table class="table table-striped">
+        <tr>
+          <th>ID</th><th>Titre</th><th>Modifier type Congé</th><th>Supprimer type congé</th>
+        </tr>
+        <tr *ngFor="let tc of typeConges">
+          <td>{{tc.idCg}}</td>
+          <td>{{tc.nomCng}}</td>
+          <td><a (click)="onEditTypeConge(tc.idCg)" class="clickable">Modifier</a> </td>
+          <td><a (click)="onDeleteTypeConge(tc)" class="clickable">Supprimer</a> </td>
+        </tr></table>
+    </div>
+  </div>
+

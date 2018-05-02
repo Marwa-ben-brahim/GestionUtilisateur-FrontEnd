@@ -32,7 +32,7 @@ export class EditDiplomeComponent implements OnInit {
       .subscribe(data=>{
         console.log(data);
         alert("Mise à jour effectuée");
-        this.router.navigate(['diplomes']);
+        this.router.navigate(['diplome']);
       },err=>{
         console.log(err);
         alert("Probléme");

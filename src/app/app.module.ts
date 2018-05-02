@@ -21,6 +21,17 @@ import { DiplomeComponent } from './diplome/diplome.component';
 import {EnfantServices} from '../services/enfant.services';
 import {DiplomeServices} from '../services/diplome.services';
 import { EditDiplomeComponent } from './edit-diplome/edit-diplome.component';
+import { EnseignantVacataireComponent } from './enseignant-vacataire/enseignant-vacataire.component';
+import { DepartementComponent } from './departement/departement.component';
+import { CongesComponent } from './conges/conges.component';
+import { EditDepartementComponent } from './edit-departement/edit-departement.component';
+import { GradeComponent } from './grade/grade.component';
+import { EditGradeComponent } from './edit-grade/edit-grade.component';
+import {CorpsServices} from '../services/corps.services';
+import {GradeServices} from '../services/grade.services';
+import {DepartementServices} from '../services/departement.services';
+import { TypeCongeComponent } from './type-conge/type-conge.component';
+import {TypeCongeServices} from '../services/typeConge.services';
 @NgModule ({
   declarations: [
     AppComponent,
@@ -36,7 +47,14 @@ import { EditDiplomeComponent } from './edit-diplome/edit-diplome.component';
     SideBarComponent,
     EnseignantPermanentComponent,
     DiplomeComponent,
-    EditDiplomeComponent
+    EditDiplomeComponent,
+    EnseignantVacataireComponent,
+    DepartementComponent,
+    CongesComponent,
+    EditDepartementComponent,
+    GradeComponent,
+    EditGradeComponent,
+    TypeCongeComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +64,7 @@ import { EditDiplomeComponent } from './edit-diplome/edit-diplome.component';
     FormsModule
   ],
   schemas:[NO_ERRORS_SCHEMA],
-  providers: [UsersServices,EnfantServices,DiplomeServices],
+  providers: [UsersServices,EnfantServices,DiplomeServices,DepartementServices,GradeServices,CorpsServices,TypeCongeServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
