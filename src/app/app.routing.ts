@@ -24,6 +24,8 @@ import {GradeComponent} from './grade/grade.component';
 import {EditDepartementComponent} from './edit-departement/edit-departement.component';
 import {EditGradeComponent} from './edit-grade/edit-grade.component';
 import {TypeCongeComponent} from './type-conge/type-conge.component';
+import {EditTypeCongeComponent} from './edit-type-conge/edit-type-conge.component';
+import {CongeComponent} from './conge/conge.component';
 
 
 const appRoutes:Routes=[
@@ -39,11 +41,13 @@ const appRoutes:Routes=[
   {path:'enseignantvacataire',component:EnseignantVacataireComponent},
   {path:'diplome',component:DiplomeComponent},
   {path:'departement',component:DepartementComponent},
+  {path:'conge',component:CongeComponent},
   {path:'typeConge',component:TypeCongeComponent},
   {path:'editDepartement/:idDep',component:EditDepartementComponent},
   {path:'editDiplome/:idDip',component:EditDiplomeComponent},
   {path:'grade',component:GradeComponent},
   {path:'editGrade/:id',component:EditGradeComponent},
+  {path:'editTypeConge/:idCg',component:EditTypeCongeComponent},
   {path:'',redirectTo:'/login',pathMatch:'full'}
 
 ];
@@ -59,5 +63,5 @@ export class AppRoutingModule { }
 
 export const routingComponents = [DashboardComponent,
   LoginComponent, UsersComponent, NewUserComponent,
-  EditUserComponent,NavbarComponent,SideBarComponent,IndexComponent,EnseignantPermanentComponent,DiplomeComponent]
+  EditUserComponent,NavbarComponent,SideBarComponent,IndexComponent,EnseignantPermanentComponent,DiplomeComponent,EditTypeCongeComponent]
 

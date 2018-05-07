@@ -1,0 +1,35 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">Ajouter Type Mutation</div>
+  <div class="panel-body">
+    <div>
+      <form class="form-inline">
+        <div class="form-group">
+          <label class="control-label">Nom du Mutation :</label>
+          <input id="msg" type="text" class="form-control" name="msg" placeholder="Nom de mutation" [(ngModel)]="typeMutation.description">
+          <button type="button" class="btn btn-primary btn-md" (click)="ajouter()">Ajouter type Mutation</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Afficher Mutation</div>
+    <div class="panel-body">
+      <div class="form-group">
+        <label>Mot Clé</label>
+        <input type="text" [(ngModel)]="motCle"/>
+        <button class="btn btn-primary" (click)="doSearch()">Chercher</button>
+      </div>
+      <table class="table table-striped">
+        <tr>
+          <th>ID</th><th>Titre</th><th>Modifier type Mutation</th><th>Supprimer type Mutation</th>
+        </tr>
+        <tr *ngFor="let tc of typeMutations">
+          <td>{{tm.code}}</td>
+          <td>{{tm.description}}</td>
+          <td><a (click)="onEditTypeMutation(tm.code)" class="clickable">Modifier</a> </td>
+          <td><a (click)="onDeleteTypeMutation(tm)" class="clickable">Supprimer</a> </td>
+        </tr></table>
+    </div>
+  </div>
+
+

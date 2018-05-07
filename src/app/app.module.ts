@@ -23,7 +23,7 @@ import {DiplomeServices} from '../services/diplome.services';
 import { EditDiplomeComponent } from './edit-diplome/edit-diplome.component';
 import { EnseignantVacataireComponent } from './enseignant-vacataire/enseignant-vacataire.component';
 import { DepartementComponent } from './departement/departement.component';
-import { CongesComponent } from './conges/conges.component';
+import { CongeComponent } from './conge/conge.component';
 import { EditDepartementComponent } from './edit-departement/edit-departement.component';
 import { GradeComponent } from './grade/grade.component';
 import { EditGradeComponent } from './edit-grade/edit-grade.component';
@@ -32,6 +32,11 @@ import {GradeServices} from '../services/grade.services';
 import {DepartementServices} from '../services/departement.services';
 import { TypeCongeComponent } from './type-conge/type-conge.component';
 import {TypeCongeServices} from '../services/typeConge.services';
+import { MutationComponent } from './mutation/mutation.component';
+import { TypeMutationComponent } from './type-mutation/type-mutation.component';
+import { EditTypeCongeComponent } from './edit-type-conge/edit-type-conge.component';
+import { EditCongeComponent } from './edit-conge/edit-conge.component';
+import {CongeServices} from '../services/conge.services';
 @NgModule ({
   declarations: [
     AppComponent,
@@ -50,11 +55,15 @@ import {TypeCongeServices} from '../services/typeConge.services';
     EditDiplomeComponent,
     EnseignantVacataireComponent,
     DepartementComponent,
-    CongesComponent,
+    CongeComponent,
     EditDepartementComponent,
     GradeComponent,
     EditGradeComponent,
-    TypeCongeComponent
+    TypeCongeComponent,
+    MutationComponent,
+    TypeMutationComponent,
+    EditTypeCongeComponent,
+    EditCongeComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +73,7 @@ import {TypeCongeServices} from '../services/typeConge.services';
     FormsModule
   ],
   schemas:[NO_ERRORS_SCHEMA],
-  providers: [UsersServices,EnfantServices,DiplomeServices,DepartementServices,GradeServices,CorpsServices,TypeCongeServices],
+  providers: [UsersServices,EnfantServices,DiplomeServices,DepartementServices,GradeServices,CorpsServices,TypeCongeServices,CongeServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
