@@ -37,6 +37,9 @@ import { TypeMutationComponent } from './type-mutation/type-mutation.component';
 import { EditTypeCongeComponent } from './edit-type-conge/edit-type-conge.component';
 import { EditCongeComponent } from './edit-conge/edit-conge.component';
 import {CongeServices} from '../services/conge.services';
+import { EditTypeMutationComponent } from './edit-type-mutation/edit-type-mutation.component';
+import {MutationServices} from '../services/Mutation.services';
+import { EditMutationComponent } from './edit-mutation/edit-mutation.component';
 @NgModule ({
   declarations: [
     AppComponent,
@@ -58,12 +61,17 @@ import {CongeServices} from '../services/conge.services';
     CongeComponent,
     EditDepartementComponent,
     GradeComponent,
+    MutationComponent,
     EditGradeComponent,
     TypeCongeComponent,
     MutationComponent,
     TypeMutationComponent,
     EditTypeCongeComponent,
-    EditCongeComponent
+    EditCongeComponent,
+    EditTypeMutationComponent,
+    EditCongeComponent,
+    EditTypeMutationComponent,
+    EditMutationComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +81,7 @@ import {CongeServices} from '../services/conge.services';
     FormsModule
   ],
   schemas:[NO_ERRORS_SCHEMA],
-  providers: [UsersServices,EnfantServices,DiplomeServices,DepartementServices,GradeServices,CorpsServices,TypeCongeServices,CongeServices],
+  providers: [UsersServices,EnfantServices,DiplomeServices,DepartementServices,GradeServices,CorpsServices,TypeCongeServices,CongeServices,MutationServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

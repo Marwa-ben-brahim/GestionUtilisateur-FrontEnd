@@ -26,6 +26,10 @@ import {EditGradeComponent} from './edit-grade/edit-grade.component';
 import {TypeCongeComponent} from './type-conge/type-conge.component';
 import {EditTypeCongeComponent} from './edit-type-conge/edit-type-conge.component';
 import {CongeComponent} from './conge/conge.component';
+import {TypeMutationComponent} from './type-mutation/type-mutation.component';
+import {EditTypeMutationComponent} from './edit-type-mutation/edit-type-mutation.component';
+import {Mutation} from '../model/model.mutation';
+import {MutationComponent} from './mutation/mutation.component';
 
 
 const appRoutes:Routes=[
@@ -43,11 +47,15 @@ const appRoutes:Routes=[
   {path:'departement',component:DepartementComponent},
   {path:'conge',component:CongeComponent},
   {path:'typeConge',component:TypeCongeComponent},
+  {path:'typeMutation',component:TypeMutationComponent},
   {path:'editDepartement/:idDep',component:EditDepartementComponent},
   {path:'editDiplome/:idDip',component:EditDiplomeComponent},
   {path:'grade',component:GradeComponent},
+  {path:'mutation',component:MutationComponent},
   {path:'editGrade/:id',component:EditGradeComponent},
+  {path:'editConge/:idCong',component:EditTypeCongeComponent},
   {path:'editTypeConge/:idCg',component:EditTypeCongeComponent},
+  {path:'editTypeMutation/:code',component:EditTypeMutationComponent},
   {path:'',redirectTo:'/login',pathMatch:'full'}
 
 ];
