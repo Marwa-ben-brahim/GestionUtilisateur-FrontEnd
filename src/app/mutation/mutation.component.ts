@@ -3,6 +3,10 @@ import {Http} from '@angular/http';
 import {Router} from '@angular/router';
 import {Mutation} from '../../model/model.mutation';
 import {MutationServices} from '../../services/Mutation.services';
+import {Personnel} from '../../model/model.personnel';
+import {UsersServices} from '../../services/users.services';
+import {TypeMutation} from "../../model/model.typeMutation";
+import {TypeMutationsServices} from "../../services/typeMutation.services";
 
 @Component({
   selector: 'app-mutation',
@@ -17,12 +21,41 @@ export class MutationComponent implements OnInit {
   size:number=5;
   mutation:Mutation=new Mutation();
   mutations:Array<Mutation>=new Array<Mutation>();
-  constructor(private mutationServices:MutationServices,public http:Http,public router:Router) { }
+  personnels:Array<Personnel>=new Array<Personnel>();
+  personnel:Personnel=new Personnel();
+  typeMutation:TypeMutation;
+  typeMutations:Array<TypeMutation>=new Array<TypeMutation>();
+  constructor(private typeMutationServices:TypeMutationsServices,private mutationServices:MutationServices,private userservices:UsersServices,public http:Http,public router:Router) { }
 
   ngOnInit() {
     this.chercher();
+    this.AfficherPersonnel();
+    this.chercherType();
+  }
+  AfficherPersonnel()
+  {
+    this.userservices.getAllPersonnel()
+      .subscribe(data=>{
+        this.personnels=data;
+        console.log(data);
+      },err=>{
+        console.log(err);
+      });
+  }
+  chercherType()
+  {
+    this.typeMutationServices.allTypesMutations()
+      .subscribe(data=>{
+        this.typeMutations=data;
+        this.pages=new Array(data.totalPages);
+        console.log(data);
+      },err=>{
+        console.log(err);
+      })
   }
   ajouter(){
+    this.mutation.personnel=this.personnel;
+    this.mutation.typemutation=this.typeMutation;
     this.mutationServices.saveMutation(this.mutation)
       .subscribe(data=>{
         alert("Success d'ajout");
@@ -57,8 +90,8 @@ export class MutationComponent implements OnInit {
     this.currentPage=i;
     this.doSearch();
   }
-  onEditMutation(id_mut:number){
-    this.router.navigate(['editMutation',id_mut]);
+  onEditMutation(idMut:number){
+    this.router.navigate(['editMutation',idMut]);
   }
   onDeleteMutation(m:Mutation){
     let confirm=window.confirm("Etes-vous sûre?");
@@ -75,6 +108,4 @@ export class MutationComponent implements OnInit {
         })
     }
   }
-
-
 }

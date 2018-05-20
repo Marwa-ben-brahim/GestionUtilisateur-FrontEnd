@@ -4,7 +4,7 @@ import "rxjs/add/operator/map";
 import {UsersServices} from '../../services/users.services';
 import {Router} from '@angular/router';
 import {User} from '../../model/model.user';
-import {Personnel} from '../../model/model.personnel';
+
 @Component({
   selector: 'app-u',
   templateUrl: './users.component.html',
@@ -20,7 +20,8 @@ size:number=5;
   constructor(public http:Http, public usersservices:UsersServices, public router:Router) {}
 
   ngOnInit() {
-this.chercher();
+  this.chercher();
+
   }
   doSearch(){
     this.usersservices.getUsers(this.motCle,this.currentPage,this.size)
@@ -36,11 +37,16 @@ this.chercher();
   {
     this.usersservices.getAllUser()
       .subscribe(data=>{
-        this.users=data;
+        this.pageUsers=data;
         this.pages=new Array(data.totalPages);
       },err=>{
         console.log(err);
       })
+    //this.doSearch();
+  }
+  chercherLogin()
+  {
+    this.doSearch();
   }
   gotopage(i:number)
   {

@@ -1,163 +1,143 @@
-<div class="panel panel-default">
-  <div class="panel-heading">AJOUTER ENSEIGNANT</div>
-  <div class="panel-body">
-    <form class="form-default">
-      <div class="form-group">
-        <label class="control-label col-sm-2" for="matricule">Matricule:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="matricule" placeholder="Entrer matricule">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" for="cin">CIN:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="cin" placeholder="Entrer votre cin">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" for="nom">Nom:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="nom" placeholder="Entrer votre nom">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" for="prenom">Prénom:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="prenom" placeholder="Entrer votre prenom">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" for="nomPere">Nom Pére:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="nomPere" placeholder="Entrer nom pére">
-        </div>
-      </div>
-      <div class="form-group ">
-        <label class="control-label col-sm-2" for="date">Date de naissance:</label>
-        <div class="col-sm-10">
-          <input class="form-control" type="date" value="2011-08-19" id="date" placeholder="Entrer votre date de naissance">
-        </div>
-      </div>
-      <div class="form-group ">
-        <label class="col-sm-2 col-form-label">Sexe:</label>
-        <label class="radio-inline">
-          <input type="radio" name="optradio">Homme
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="optradio">Femme
-        </label>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" for="telephone">Téléphone:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="telephone" placeholder="Entrer  votre numéro du téléphone">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" for="telephone">E-mail:</label>
-        <div class="col-sm-10">
-          <input type="email" class="form-control" id="email" placeholder="exemple@xyy.com">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" for="adresse">Adresse :</label>
-        <div class="col-sm-10">
-        <textarea class="form-control" id="adresse" rows="3"></textarea>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" for="codep">Code Postal:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="codep">
-        </div>
-      </div>
-      <div class="form-group ">
-        <label class="col-sm-2 col-form-label">Etat civil:</label>
-        <label class="radio-inline">
-          <input type="radio" name="optradio">Célibataire
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="optradio">Marié(e)
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="optradio">Divorcé(e)
-        </label>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" for="nomcj">Nom Conjoint:</label>
-        <div class="col-sm-10">
-          <input type="nomcj" class="form-control" id="nomcj">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" for="profcj">Profession Conjoint:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="profcj">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" for="spec">Spécialité:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="spec">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2" for="etatc">Département:</label>
-        <div class="col-sm-10">
-          <select class="form-control" id="dip">
-            <option>Sciences Economiques et de Gestion</option>
-            <option>Technologie de l'Informatique</option>
-            <option>Génie des Procédés</option>
-            <option>Génie Civil</option>
-            <option>Génie Mécanique</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2" for="etatc">Plan de carriére:</label>
-        <div class="col-sm-10">
-          <select class="form-control" id="dip">
-            <option>Directeur de l'Institut</option>
-            <option>Directeur des Etudes</option>
-            <option>Directeur du Département</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group ">
-        <label class="col-sm-2 col-form-label">Etat:</label>
-        <label class="radio-inline">
-          <input type="radio" name="optradio">Actif
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="optradio">Non-actif
-        </label>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2" for="etatc">Diplôme:</label>
-        <div class="col-sm-10">
-        <select class="form-control" id="dip">
-          <option>Doctorat</option>
-          <option>Mastére</option>
-          <option>Licence</option>
-        </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-2" for="etatc">Grade:</label>
-        <div class="col-sm-10">
-        <select class="form-control" id="grd">
-          <option>Professeur-Technologue</option>
-          <option>Maitre-Technologue</option>
-          <option>Technologue</option>
-          <option>Enseignant</option>
-        </select>
-        </div>
-      </div>
-    </form>
-    <button type="submit" class="btn btn-info" (click)="Enregistrer()">Ajouter</button>
-    <button type="submit" class="btn btn-info" (click)="annuler()">Annuler</button>
-  </div>
-</div>
+<app-index></app-index>
+    <div class="panel panel-primary">
+      <div class="panel-heading">AJOUTER ENSEIGNANT</div>
+      <div class="panel-body">
+    <mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Données Personnelle
+      </mat-panel-title>
+      <mat-panel-description>
+    </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-form-field>
+      <input matInput placeholder="Matricule" [(ngModel)]="enseignantP.matricule">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="CIN"  [(ngModel)]="enseignantP.cin">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Nom"  [(ngModel)]="enseignantP.nom">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Prenom"  [(ngModel)]="enseignantP.prenom">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Nom de Pére"  [(ngModel)]="enseignantP.nompere">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Date de Naissance" [(ngModel)]="enseignantP.datenaissance">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Lieu de Naissance"  [(ngModel)]="enseignantP.lieuNaissance">
+    </mat-form-field>
+    <mat-radio-group [(ngModel)]="enseignantP.sexe">
+      <mat-radio-button value="F">Femme</mat-radio-button>
+      <mat-radio-button value="H">Homme</mat-radio-button>
+    </mat-radio-group>
+     <mat-form-field>
+      <input matInput placeholder="Téléphone"  [(ngModel)]="enseignantP.telephone">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Email" type="email" [(ngModel)]="enseignantP.email"  required>
+      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput placeholder="Adresse"  [(ngModel)]="enseignantP.adresse"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Code Postal"  [(ngModel)]="enseignantP.codepostal">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Spécialité"  [(ngModel)]="enseignantP.specialite">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="RIB"  [(ngModel)]="enseignantP.rib">
+    </mat-form-field><br>
+    <mat-radio-group [(ngModel)]="enseignantP.etatCivil">
+      <mat-radio-button value="Celibataire">Célibataire</mat-radio-button>
+      <mat-radio-button value="Marie">Marié(e)</mat-radio-button>
+      <mat-radio-button value="Divorce">Divorcé(e)</mat-radio-button>
+    </mat-radio-group>
+    <mat-form-field>
+      <input matInput placeholder="Nom Conjoint"  [(ngModel)]="enseignantP.nomconjoint">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Profession Conjoint"  [(ngModel)]="enseignantP.profconj">
+    </mat-form-field>
+    </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Données Professionnelles
+      </mat-panel-title>
+      <mat-panel-description>
+       {{enseignantP.prenom+"   "+enseignantP.nom}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-form-field>
+      <mat-select placeholder="Departement" [(value)]="departement">
+        <mat-option *ngFor="let d of departements" [value]="d">
+          {{ d.nomDep }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Poste Administratif" [(value)]="poste">
+            <mat-option *ngFor="let p of postes" [value]="p">
+              {{p.libelle}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+     <mat-form-field>
+      <mat-select placeholder="Grade">
+        <mat-option *ngFor="let grd of grades" [value]="grd.id">
+          {{ grd.titre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker2" placeholder="Date de grade">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Corps">
+        <mat-option *ngFor="let c of corps" [value]="c.idcps">
+          {{ c.libelle }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker3" placeholder="Date de Recrutement" [(ngModel)]="enseignantP.dateRecrutement">
+      <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+      <mat-datepicker #picker3></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker4" placeholder="Date de Titularisation" [(ngModel)]="enseignantP.dateDemarcation">
+      <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+      <mat-datepicker #picker4></mat-datepicker>
+    </mat-form-field>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Etat
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
 
-
-
+  <mat-radio-group [(ngModel)]="enseignantP.etat">
+    <mat-radio-button value="actif">Actif</mat-radio-button>
+    <mat-radio-button value="non-actif">Non-Actif</mat-radio-button>
+  </mat-radio-group>
+  </mat-expansion-panel>
+      <button mat-raised-button color="primary" (click)="Enregistrer()">Ajouter</button>
+      <button mat-raised-button color="primary" (click)="annuler()">Annuler</button>
+</mat-accordion>
+      </div>
+    </div>

@@ -3,6 +3,10 @@ import {Http} from '@angular/http';
 import {Router} from '@angular/router';
 import {CongeServices} from '../../services/conge.services';
 import {Conge} from '../../model/model.conge';
+import {Personnel} from '../../model/model.personnel';
+import {UsersServices} from '../../services/users.services';
+import {TypeConge} from '../../model/model.typeConge';
+import {TypeCongeServices} from '../../services/typeConge.services';
 
 @Component({
   selector: 'app-conges',
@@ -17,15 +21,41 @@ export class CongeComponent implements OnInit {
   size:number=5;
   conge:Conge= new Conge();
   conges:Array<Conge>=new Array<Conge>();
-  constructor(private congeServices:CongeServices,public http:Http,public router:Router) { }
+  personnels: Array<Personnel> = new Array<Personnel>();
+  personnel:Personnel;
+  typeconge:TypeConge=new TypeConge();
+  typeconges:Array<TypeConge> =new Array<TypeConge>();
+  constructor(private congeServices:CongeServices, private typeCongeServices:TypeCongeServices,private userservices: UsersServices,public http:Http,public router:Router) { }
 
   ngOnInit() {
     this.chercher();
+    this.AfficherPersonnel();
+    this.AfficherTypeConge();
   }
   ajouter(){
     this.congeServices.saveConge(this.conge)
       .subscribe(data=>{
         alert("Succès d'ajout");
+        console.log(data);
+      },err=>{
+        console.log(err);
+      });
+  }
+  AfficherPersonnel()
+  {
+    this.userservices.getAllPersonnel()
+      .subscribe(data=>{
+        this.personnels=data;
+        console.log(data);
+      },err=>{
+        console.log(err);
+      });
+  }
+  AfficherTypeConge()
+  {
+    this.typeCongeServices.allTypesConges()
+      .subscribe(data=>{
+        this.typeconges=data;
         console.log(data);
       },err=>{
         console.log(err);

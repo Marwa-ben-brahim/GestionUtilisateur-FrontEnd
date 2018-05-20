@@ -12,7 +12,7 @@ export class TypeMutationsServices{
       .map(resp=>resp.json())
   }
   allTypesMutations(){
-    return this.http.get("http://localhost:8080/TypeMutation")
+    return this.http.get("http://localhost:8080/TypeMutations")
       .map(resp=>resp.json())
   }
   getTypeMutation(code:number){

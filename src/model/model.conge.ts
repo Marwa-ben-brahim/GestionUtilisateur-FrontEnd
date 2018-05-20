@@ -1,4 +1,5 @@
 import {TypeConge} from './model.typeConge';
+import {Personnel} from './model.personnel';
 
 export class Conge{
   idCong:number=0;
@@ -6,5 +7,6 @@ export class Conge{
   dateFin:Date=null;
   reprise:boolean;
   valide:boolean;
-  typeConge:TypeConge=null;
+  typeconge:TypeConge=null;
+  personnel:Personnel=null;
 }

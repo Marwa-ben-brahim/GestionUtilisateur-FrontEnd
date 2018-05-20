@@ -1,0 +1,23 @@
+<app-index></app-index>
+<div class="container spacer">
+<div class="panel panel-primary">
+  <div class="panel-heading">Consultation des demandes de congés du personnel</div>
+  <div class="panel-body">
+      <table class="table table-striped">
+        <tr>
+          <th>Nom</th><th>Date de début</th><th>Date de fin</th><th>Motif</th><th>Décision</th>
+        </tr>
+        <tr *ngFor="let c of conges">
+          <td>{{c.personnel}}</td>
+          <td>{{c.dateDebut}}</td>
+          <td>{{c.dateFin}}</td>
+          <td>{{c.typeconge.libelle}} </td>
+          <td><button type="submit"  class="btn btn-success">Accepter</button> </td>
+          <td><button type="submit"  class="btn btn-success">Refuser</button>> </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+

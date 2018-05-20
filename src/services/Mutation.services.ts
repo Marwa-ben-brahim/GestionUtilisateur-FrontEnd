@@ -12,8 +12,8 @@ export class MutationServices {
       .map(resp => resp.json())
   }
 
-  getMutation(id_mut: number) {
-    return this.http.get("http://localhost:8080/Mutation/" + id_mut)
+  getMutation(idMut: number) {
+    return this.http.get("http://localhost:8080/Mutation/"+idMut)
       .map(resp => resp.json())
   }
 
@@ -23,12 +23,12 @@ export class MutationServices {
   }
 
   updateMutation(mutation: Mutation) {
-    return this.http.put("http://localhost:8080/ModifierMutation/"+ mutation.idMut, mutation)
+    return this.http.put("http://localhost:8080/ModifierMutation/"+mutation.idMut, mutation)
       .map(resp => resp.json())
   }
 
-  deleteMutation(id_mut: number) {
-    return this.http.delete("http://localhost:8080/SupprimerMutation/" + id_mut)
+  deleteMutation(idMut: number) {
+    return this.http.delete("http://localhost:8080/SupprimerMutation/"+idMut)
       .map(resp => resp.json())
   }
   getAllMutations() {

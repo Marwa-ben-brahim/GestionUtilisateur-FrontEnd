@@ -1,0 +1,32 @@
+<app-index></app-index>
+<div class="container spacer">
+<div class="panel panel-primary">
+  <div class="panel-heading">Modifier Période</div>
+  <div class="panel-body">
+    <mat-form-field>
+      <mat-select placeholder="Personnel" [(value)]="personnel">
+        <mat-option *ngFor="let p of personnels" [value]="p" [(ngModel)]="periode.personnel">
+          {{ p.prenom +"  "+p.nom  }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field><br>
+    <mat-form-field>
+      <mat-select placeholder="Poste Administrative" [(value)]="posteAdmin">
+        <mat-option *ngFor="let p of postes" [value]="p" [(ngModel)]="periode.posteAdmin">
+          {{ p.libelle}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field><br>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Date de Debut" [(ngModel)]="periode.dateDebut">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field><br>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker1" placeholder="Date de Fin" [(ngModel)]="edit-periode.dateFin">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field><br>
+    <button mat-raised-button color="primary" (click)="ajouter()">Enregistrer</button>
+  </div>
+</div>

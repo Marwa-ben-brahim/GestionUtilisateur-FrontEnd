@@ -3,19 +3,15 @@ import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
-import { AboutComponent } from './about/about.component';
 import {RouterModule, Routes} from '@angular/router';
 import {HttpModule} from '@angular/http';
 import {UsersServices} from '../services/users.services';
 import { NewUserComponent } from './new-user/new-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { LoginComponent } from './login/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { IndexComponent } from './index/index.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
-import { EnseignantPermanentComponent } from './enseignant-permanent/enseignant-permanent.component';
 import {AppRoutingModule} from './app.routing';
 import { DiplomeComponent } from './diplome/diplome.component';
 import {EnfantServices} from '../services/enfant.services';
@@ -40,20 +36,47 @@ import {CongeServices} from '../services/conge.services';
 import { EditTypeMutationComponent } from './edit-type-mutation/edit-type-mutation.component';
 import {MutationServices} from '../services/Mutation.services';
 import { EditMutationComponent } from './edit-mutation/edit-mutation.component';
+import {TypeMutationsServices} from '../services/typeMutation.services';
+import { ConsultationCongeComponent } from './consultationConge/consultation-conge.component';
+import { EnseignantPermanentComponent } from './enseignant-permanent/enseignant-permanent.component';
+import {  MatButtonModule,
+  MatTabsModule,
+  MatSelectModule,
+  MatExpansionModule,
+  MatInputModule,
+  MatNativeDateModule,
+  MatRadioModule,
+  MatListModule,
+  MatDatepickerModule,
+  MatToolbarModule,
+  MatIconModule, MatAutocompleteModule, MatMenuModule, MatTableModule, MatPaginatorModule} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import '../polyfills';
+import {EnseignantPermanentServices} from '../services/enseignantpermanent.services';
+import {AGradeServices} from '../services/agrade.services';
+import {DiplomePersonnelServices} from '../services/diplomepersonnel.services';
+import { PosteAdministrativeComponent } from './poste-administratif/poste-administrative.component';
+import { EditPosteAdministrativeComponent } from './edit-poste-administratif/edit-poste-administrative.component';
+import {PosteAdministrativeServices} from '../services/posteAdministrative.services';
+import { PeriodeComponent } from './periode/periode.component';
+import {PeriodeServices} from '../services/periode.services';
+import { EditPeriodeComponent } from './edit-periode/edit-periode.component';
+import { CorpsComponent } from './corps/corps.component';
+import { EditCorpsComponent } from './edit-corps/edit-corps.component';
+import { DiplomePersonnelComponent } from './diplome-personnel/diplome-personnel.component';
+import { EditDiplomePersonnelComponent } from './edit-diplome-personnel/edit-diplome-personnel.component';
+import { ListeEnseignantPermanentComponent } from './liste-enseignant-permanent/liste-enseignant-permanent.component';
+import { HistoriqueCongeComponent } from './historique-conge/historique-conge.component';
 @NgModule ({
   declarations: [
     AppComponent,
     UsersComponent,
-    AboutComponent,
     NewUserComponent,
     EditUserComponent,
     LoginComponent,
-    DashboardComponent,
     IndexComponent,
-    NavbarComponent,
     FooterComponent,
     SideBarComponent,
-    EnseignantPermanentComponent,
     DiplomeComponent,
     EditDiplomeComponent,
     EnseignantVacataireComponent,
@@ -71,17 +94,46 @@ import { EditMutationComponent } from './edit-mutation/edit-mutation.component';
     EditTypeMutationComponent,
     EditCongeComponent,
     EditTypeMutationComponent,
-    EditMutationComponent
+    EditMutationComponent,
+    ConsultationCongeComponent,
+    EnseignantPermanentComponent,
+    PosteAdministrativeComponent,
+    EditPosteAdministrativeComponent,
+    PeriodeComponent,
+    EditPeriodeComponent,
+    CorpsComponent,
+    EditCorpsComponent,
+    DiplomePersonnelComponent,
+    EditDiplomePersonnelComponent,
+    ListeEnseignantPermanentComponent,
+    HistoriqueCongeComponent
   ],
   imports: [
     BrowserModule,
     RouterModule,
     AppRoutingModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatTabsModule,
+    MatExpansionModule,
+    MatInputModule,
+    MatListModule,
+    MatToolbarModule,
+    MatDatepickerModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatIconModule,
+    MatAutocompleteModule,
+    MatMenuModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatNativeDateModule
   ],
   schemas:[NO_ERRORS_SCHEMA],
-  providers: [UsersServices,EnfantServices,DiplomeServices,DepartementServices,GradeServices,CorpsServices,TypeCongeServices,CongeServices,MutationServices],
+  providers: [UsersServices,EnfantServices,DiplomeServices,DepartementServices,GradeServices,CorpsServices,TypeCongeServices,CongeServices,MutationServices,
+    TypeMutationsServices,EnseignantPermanentServices,AGradeServices,DiplomePersonnelServices,PosteAdministrativeServices,PeriodeServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
