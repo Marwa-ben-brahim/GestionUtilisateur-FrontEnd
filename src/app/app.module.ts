@@ -67,6 +67,11 @@ import { DiplomePersonnelComponent } from './diplome-personnel/diplome-personnel
 import { EditDiplomePersonnelComponent } from './edit-diplome-personnel/edit-diplome-personnel.component';
 import { ListeEnseignantPermanentComponent } from './liste-enseignant-permanent/liste-enseignant-permanent.component';
 import { HistoriqueCongeComponent } from './historique-conge/historique-conge.component';
+import { DetailsEnseignantComponent } from './details-enseignant/details-enseignant.component';
+import { AGradeComponent } from './a-grade/a-grade.component';
+import { EditAgradeComponent } from './edit-agrade/edit-agrade.component';
+import { EditEnseignantPermanentComponent } from './edit-enseignant-permanent/edit-enseignant-permanent.component';
+import {PersonnelServices} from '../services/personnel.services';
 @NgModule ({
   declarations: [
     AppComponent,
@@ -106,7 +111,11 @@ import { HistoriqueCongeComponent } from './historique-conge/historique-conge.co
     DiplomePersonnelComponent,
     EditDiplomePersonnelComponent,
     ListeEnseignantPermanentComponent,
-    HistoriqueCongeComponent
+    HistoriqueCongeComponent,
+    DetailsEnseignantComponent,
+    AGradeComponent,
+    EditAgradeComponent,
+    EditEnseignantPermanentComponent
   ],
   imports: [
     BrowserModule,
@@ -133,7 +142,7 @@ import { HistoriqueCongeComponent } from './historique-conge/historique-conge.co
   ],
   schemas:[NO_ERRORS_SCHEMA],
   providers: [UsersServices,EnfantServices,DiplomeServices,DepartementServices,GradeServices,CorpsServices,TypeCongeServices,CongeServices,MutationServices,
-    TypeMutationsServices,EnseignantPermanentServices,AGradeServices,DiplomePersonnelServices,PosteAdministrativeServices,PeriodeServices],
+    TypeMutationsServices,EnseignantPermanentServices,AGradeServices,DiplomePersonnelServices,PosteAdministrativeServices,PeriodeServices,PersonnelServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

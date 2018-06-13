@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import {CongeServices} from '../../services/conge.services';
 import {Conge} from '../../model/model.conge';
 import {Personnel} from '../../model/model.personnel';
-import {UsersServices} from '../../services/users.services';
+import {PersonnelServices} from '../../services/personnel.services';
 import {TypeConge} from '../../model/model.typeConge';
 import {TypeCongeServices} from '../../services/typeConge.services';
 
@@ -20,19 +20,27 @@ export class CongeComponent implements OnInit {
   pages:Array<number>;
   size:number=5;
   conge:Conge= new Conge();
-  conges:Array<Conge>=new Array<Conge>();
   personnels: Array<Personnel> = new Array<Personnel>();
   personnel:Personnel;
   typeconge:TypeConge=new TypeConge();
   typeconges:Array<TypeConge> =new Array<TypeConge>();
-  constructor(private congeServices:CongeServices, private typeCongeServices:TypeCongeServices,private userservices: UsersServices,public http:Http,public router:Router) { }
+  nbjour:number=0;
+  nbjourRest:number=0;
+  constructor(private congeServices:CongeServices,
+              private typeCongeServices:TypeCongeServices,
+              private personnelServices: PersonnelServices,
+              public http:Http,public router:Router) { }
 
   ngOnInit() {
-    this.chercher();
     this.AfficherPersonnel();
     this.AfficherTypeConge();
+    //this.conge.nbJourRest=this.typeconge.nbMaxJrs;
   }
   ajouter(){
+    this.conge.typeconge=this.typeconge;
+    this.conge.personnel=this.personnel;
+    this.conge.nbJourRest=this.nbjourRest;
+    this.conge.valide="en-attente";
     this.congeServices.saveConge(this.conge)
       .subscribe(data=>{
         alert("Succès d'ajout");
@@ -40,10 +48,12 @@ export class CongeComponent implements OnInit {
       },err=>{
         console.log(err);
       });
+    this.personnel.conges.push(this.conge);
+    //this.pesonnelS
   }
   AfficherPersonnel()
   {
-    this.userservices.getAllPersonnel()
+    this.personnelServices.getAllPersonnel()
       .subscribe(data=>{
         this.personnels=data;
         console.log(data);
@@ -60,32 +70,6 @@ export class CongeComponent implements OnInit {
       },err=>{
         console.log(err);
       });
-  }
-  doSearch(){
-    this.congeServices.getConges(this.motCle,this.currentPage,this.size)
-      .subscribe(data=>{
-        console.log(data);
-        this.pageConge=data;
-        this.pages=new Array(data.totalPages);
-      },err=>{
-        console.log(err);
-      })
-  }
-  chercher()
-  {
-    this.congeServices.allConges()
-      .subscribe(data=>{
-        this.conges=data;
-        this.pages=new Array(data.totalPages);
-        console.log(data);
-      },err=>{
-        console.log(err);
-      })
-  }
-  gotopage(i:number)
-  {
-    this.currentPage=i;
-    this.doSearch();
   }
   onEditConge(idCong:number){
     this.router.navigate(['editConge',idCong]);
@@ -104,5 +88,17 @@ export class CongeComponent implements OnInit {
           console.log(err);
         })
     }
+  }
+  CalculerNbjour()
+  {if(this.conge!=null)
+    return this.nbjour=((Number(this.conge.dateFin) - Number(this.conge.dateDebut))/86400000)+1;
+  else
+    return 0;
+  }
+  CalculerResteJour()
+  {if(this.typeconge!=null)
+    return this.nbjourRest=this.typeconge.nbMaxJrs-this.nbjour;
+  else
+    return 0;
   }
 }

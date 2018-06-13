@@ -12,8 +12,8 @@ export class AGradeServices {
       .map(resp => resp.json())
   }
 
-  getAGrade(id_grade: number) {
-    return this.http.get("http://localhost:8080/AGrade/" + id_grade)
+  getAGrade(id_agrade: number) {
+    return this.http.get("http://localhost:8080/AGrade/" + id_agrade)
       .map(resp => resp.json())
   }
 
@@ -23,7 +23,7 @@ export class AGradeServices {
   }
 
   updateAGrade(agrade: AGrade) {
-    return this.http.put("http://localhost:8080/ModifierAGrade/" + agrade.id_grade, agrade)
+    return this.http.put("http://localhost:8080/ModifierAGrade/" + agrade.id_agrade, agrade)
       .map(resp => resp.json())
   }
 

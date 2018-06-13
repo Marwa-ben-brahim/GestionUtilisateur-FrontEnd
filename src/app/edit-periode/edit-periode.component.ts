@@ -4,6 +4,8 @@ import {Periode} from '../../model/model.periode';
 import {PeriodeServices} from '../../services/periode.services';
 import {Personnel} from '../../model/model.personnel';
 import {PosteAdministrative} from '../../model/model.posteAdministrative';
+import {PosteAdministrativeServices} from '../../services/posteAdministrative.services';
+import {UsersServices} from '../../services/users.services';
 
 @Component({
   selector: 'app-edit-periode',
@@ -20,11 +22,15 @@ export class EditPeriodeComponent implements OnInit {
 
   constructor(public activatedRoute: ActivatedRoute,
               public periodeService: PeriodeServices,
+              private posteServices: PosteAdministrativeServices,
+              private userservices: UsersServices,
               public router: Router) {
     this.id = activatedRoute.snapshot.params['id'];
   }
 
   ngOnInit() {
+    this.AfficherPersonnel();
+    this.chercherPosteAdmin();
     this.periodeService.getPeriode(this.id)
       .subscribe(data => {
         this.periode = data;
@@ -33,8 +39,30 @@ export class EditPeriodeComponent implements OnInit {
         console.log(err);
       })
   }
+  AfficherPersonnel()
+  {
+    this.userservices.getAllPersonnel()
+      .subscribe(data=>{
+        this.personnels=data;
+        console.log(data);
+      },err=>{
+        console.log(err);
+      });
+  }
+  chercherPosteAdmin()
+  {
+    this.posteServices.getAllPostes()
+      .subscribe(data=>{
+        this.postes=data;
+        console.log(data);
+      },err=>{
+        console.log(err);
+      })
+  }
 
   updatePeriode() {
+    this.periode.personnel=this.personnel;
+    this.periode.posteAdministrative=this.posteAdmin;
     this.periodeService.updatePeriode(this.periode)
       .subscribe(data => {
         console.log(data);

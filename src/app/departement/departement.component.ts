@@ -35,7 +35,7 @@ export class DepartementComponent implements OnInit {
     this.departementServices.getDepartements(this.motCle,this.currentPage,this.size)
       .subscribe(data=>{
         console.log(data);
-        this.departements=data;
+        this.pageDepartement=data;
         this.pages=new Array(data.totalPages);
       },err=>{
         console.log(err);
@@ -67,7 +67,7 @@ export class DepartementComponent implements OnInit {
       this.departementServices.deleteDepartement(d.idDep)
         .subscribe(data=> {
           this.pageDepartement.content.splice(
-            this.pageDepartement.content.indexOf(d),1
+          this.pageDepartement.content.indexOf(d),1
           );
           console.log(data);
         },err=>{

@@ -3,34 +3,32 @@
   <div class="panel-heading">Ajouter Poste Administratif</div>
   <div class="panel-body">
     <div>
-      <form class="form-inline">
-        <div class="form-group">
-          <label class="control-label">Libellé :</label>
-          <input id="msg" type="text" class="form-control" name="msg" placeholder="libellé" [(ngModel)]="poste.libelle">
-          <button type="button" class="btn btn-primary btn-md" (click)="ajouter()">Ajouter</button>
+      <mat-form-field>
+        <input matInput placeholder="Libellé" [(ngModel)]="poste.libelle">
+      </mat-form-field>
+          <button  mat-icon-button  (click)="ajouter()"> <mat-icon>add_circle</mat-icon></button>
         </div>
-      </form>
+
     </div>
   </div>
   <div class="panel panel-default">
     <div class="panel-heading">Afficher Poste</div>
     <div class="panel-body">
       <div class="form-group">
-        <label>Libellé</label>
-        <input type="text" [(ngModel)]="motCle"/>
-        <button class="btn btn-primary" (click)="doSearch()">Chercher</button>
+        <input type="text" placeholder="Libellé" [(ngModel)]="motCle"/>
+        <button mat-icon-button color="" (click)="doSearch()">
+          <mat-icon>search</mat-icon></button>
       </div>
       <table class="table table-striped">
         <tr>
-          <th>ID</th><th>Libellé</th><th>Modifier Poste</th><th>Supprimer Poste</th>
+          <th>ID</th><th>Libellé</th><th>Modifier</th><th>Supprimer</th>
         </tr>
         <tr *ngFor="let p of postes">
           <td>{{p.id}}</td>
           <td>{{p.libelle}}</td>
-          <td><a (click)="onEditPoste(p.id)" class="clickable">Modifier</a> </td>
-          <td><a (click)="onDeletePoste(p)" class="clickable">Supprimer</a> </td>
+          <td><a (click)="onEditPoste(p.id)" class="clickable"><mat-icon>create</mat-icon></a> </td>
+          <td><a (click)="onDeletePoste(p)" class="clickable"><mat-icon color="#B00020">delete_sweep</mat-icon></a> </td>
         </tr></table>
     </div>
   </div>
-</div>
 

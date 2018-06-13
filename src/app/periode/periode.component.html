@@ -1,4 +1,5 @@
 <app-index></app-index>
+<div class="container spacer">
 <div class="panel panel-primary">
   <div class="panel-heading">Ajouter Période</div>
   <div class="panel-body">
@@ -28,26 +29,28 @@
 </mat-form-field><br>
     <button mat-raised-button color="primary" (click)="ajouter()">Ajouter</button>
 </div>
+</div>
   <div class="panel panel-default">
     <div class="panel-heading">Afficher Période</div>
     <div class="panel-body">
-      <div class="form-group">
-        <label>Période</label>
-        <input type="text" [(ngModel)]="motCle"/>
-        <button class="btn btn-primary" (click)="doSearch()">Chercher</button>
-      </div>
+      <mat-form-field>
+        <input matInput placeholder="Periode"  [(ngModel)]="motCle">
+      </mat-form-field>
+      <button mat-icon-button (click)="doSearch()">
+        <mat-icon >search</mat-icon>
+      </button>
       <table class="table table-striped">
         <tr>
           <th>ID</th><th>Personnel</th><th>Poste</th><th>Date Debut</th><th>Date Fin</th><th>Modifier</th><th>Supprimer</th>
         </tr>
         <tr *ngFor="let p of periodes">
-          <td>{{p.id}}</td>
+          <td>{{p.id_periode}}</td>
           <td>{{p.personnel.nom+" "+p.personnel.prenom}}</td>
-          <td>{{p.posteAdmin.libelle}}</td>
+          <td>{{p.posteAdministrative.libelle}}</td>
           <td>{{p.dateDebut}}</td>
           <td>{{p.dateFin}}</td>
-          <td><a (click)="onEditPeriode(p.id)" class="clickable">Modifier</a> </td>
-          <td><a (click)="onDeletePeriode(p)" class="clickable">Supprimer</a> </td>
+          <td><a (click)="onEditPeriode(p.id_periode)" class="clickable"><mat-icon >create</mat-icon></a> </td>
+          <td><a (click)="onDeletePeriode(p)" class="clickable"><mat-icon >delete</mat-icon></a> </td>
         </tr></table>
     </div>
   </div>

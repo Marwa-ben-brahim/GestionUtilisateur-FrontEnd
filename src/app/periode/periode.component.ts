@@ -37,7 +37,7 @@ export class PeriodeComponent implements OnInit {
 
   ajouter() {
     this.periode.personnel=this.personnel;
-    this.periode.posteAdmin=this.posteAdmin;
+    this.periode.posteAdministrative=this.posteAdmin;
     this.periodeServices.savePeriode(this.periode)
       .subscribe(data => {
         alert("Success d'ajout");
@@ -61,7 +61,6 @@ export class PeriodeComponent implements OnInit {
     this.posteServices.getAllPostes()
       .subscribe(data=>{
         this.postes=data;
-        this.pages=new Array(data.totalPages);
         console.log(data);
       },err=>{
         console.log(err);
@@ -94,14 +93,14 @@ export class PeriodeComponent implements OnInit {
     this.doSearch();
   }
 
-  onEditPeriode(id: number) {
-    this.router.navigate(['editPeriode', id]);
+  onEditPeriode(id_periode: number) {
+    this.router.navigate(['editPeriode', id_periode]);
   }
 
   onDeletePeriode(p: Periode) {
     let confirm = window.confirm("Etes-vous sûre?");
     if (confirm == true) {
-      this.periodeServices.deletePeriode(p.id)
+      this.periodeServices.deletePeriode(p.id_periode)
         .subscribe(data => {
           this.pagePeriode.content.splice(
             this.pagePeriode.content.indexOf(p), 1

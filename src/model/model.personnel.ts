@@ -1,6 +1,8 @@
+import {Conge} from "./model.conge";
+
 export class Personnel{
-  matricule:number=0;
-  cin:number=0;
+  matricule:number;
+  cin:number;
   nom:string="";
   prenom:string="";
   adresse:string="";
@@ -8,12 +10,12 @@ export class Personnel{
   email:string="";
   datenaissance:Date;
   lieuNaissance:string="";
-  codepostal:number=0;
+  codepostal:number;
   sexe:string="";
   rib:string="";
   etatCivil:string="";
-  nomconjoint:string="";
-  profconj:string="";
+  nomConjoint:string="";
+  profConjoint:string="";
   nompere:string="";
-
+  conges:Array<Conge>=new Array<Conge>();
 }

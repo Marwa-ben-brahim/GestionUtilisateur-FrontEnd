@@ -35,6 +35,11 @@ import {EditPeriodeComponent} from './edit-periode/edit-periode.component';
 import {EditCorpsComponent} from './edit-corps/edit-corps.component';
 import {ListeEnseignantPermanentComponent} from './liste-enseignant-permanent/liste-enseignant-permanent.component';
 import {DiplomePersonnel} from '../model/model.diplomepersonnel';
+import {EditMutationComponent} from './edit-mutation/edit-mutation.component';
+import {DiplomePersonnelComponent} from './diplome-personnel/diplome-personnel.component';
+import {AGradeComponent} from './a-grade/a-grade.component';
+import {EditAgradeComponent} from './edit-agrade/edit-agrade.component';
+import {EditEnseignantPermanentComponent} from './edit-enseignant-permanent/edit-enseignant-permanent.component';
 
 
 const appRoutes:Routes=[
@@ -59,17 +64,21 @@ const appRoutes:Routes=[
   {path:'grade',component:GradeComponent},
   {path:'periode',component:PeriodeComponent},
   {path:'mutation',component:MutationComponent},
+  {path:'editMutation/:idMut',component:EditMutationComponent},
   {path:'corps',component:CorpsComponent},
   {path:'editGrade/:id',component:EditGradeComponent},
-  {path:'editDepartement/:idDep',component:EditDepartementComponent},
+  {path:'editdepartement/:idDep',component:EditDepartementComponent},
   {path:'editPeriode/:id',component:EditPeriodeComponent},
   {path:'editPosteAdmin/:id',component:EditPosteAdministrativeComponent},
   {path:'editConge/:idCong',component:EditTypeCongeComponent},
   {path:'editTypeConge/:idCg',component:EditTypeCongeComponent},
-  {path:'editCorps/:code',component:EditCorpsComponent},
+  {path:'editCorps/:idcps',component:EditCorpsComponent},
   {path:'editTypeMutation/:code',component:EditTypeMutationComponent},
   {path:'ListeEnseignantP',component:ListeEnseignantPermanentComponent},
-  {path:'DiplomePersonnel',component:DiplomePersonnel},
+  {path:'Agrade',component:AGradeComponent},
+  {path:'editAgrade/:id_agrade',component:EditAgradeComponent},
+  {path:'EditEnseignantP/:matricule',component:EditEnseignantPermanentComponent},
+  {path:'DiplomePersonnel',component:DiplomePersonnelComponent},
   {path:'',redirectTo:'/login',pathMatch:'full'}
 
 

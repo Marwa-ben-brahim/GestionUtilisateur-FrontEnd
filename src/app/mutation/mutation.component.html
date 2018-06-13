@@ -13,10 +13,10 @@
           </mat-select>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Organisme d'accueil" [(ngModel)]="mutation.orgAccueil">
+          <input matInput type="text" name="orgAccueil" placeholder="Organisme d'accueil" [(ngModel)]="mutation.orgAccueil">
         </mat-form-field>
         <mat-form-field>
-          <mat-select placeholder="Type Mutation" [(value)]="typeMutation">
+          <mat-select placeholder="Type" [(value)]="typeMutation">
             <mat-option *ngFor="let tm of typeMutations" [value]="tm">
               {{tm.designation}}
             </mat-option>

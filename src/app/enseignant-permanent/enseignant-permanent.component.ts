@@ -14,6 +14,8 @@ import {Corps} from "../../model/model.corps";
 import {CorpsServices} from "../../services/corps.services";
 import {PosteAdministrative} from "../../model/model.posteAdministrative";
 import {PosteAdministrativeServices} from "../../services/posteAdministrative.services";
+import {AGrade} from "../../model/model.agrade";
+import {AGradeServices} from "../../services/agrade.services";
 
 
 @Component({
@@ -23,8 +25,6 @@ import {PosteAdministrativeServices} from "../../services/posteAdministrative.se
 })
 export class EnseignantPermanentComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
-  pageEnseignantP: any;
-  motCle: string = "";
   currentPage: number = 0;
   pages: Array<number>;
   size: number = 5;
@@ -36,8 +36,14 @@ export class EnseignantPermanentComponent implements OnInit {
   departement:Departement;
   poste:PosteAdministrative;
   panelOpenState: boolean = false;
-  constructor(private posteService:PosteAdministrativeServices,private gradeServices: GradeServices,private corpsServices: CorpsServices,private enseingnantpermanentService:EnseignantPermanentServices, private enfantservice: EnfantServices, private departementServices: DepartementServices, public http: Http, public router: Router) {
-
+  agrade:AGrade=new AGrade();
+  grade:Grade=new Grade();
+  corp:Corps=new Corps();
+  nbEnfant:number;
+  enfants:Array<Enfant>;
+  enfant:Enfant;
+  pagesEnf:Array<number>;
+  constructor(private agradeServices:AGradeServices,private posteService:PosteAdministrativeServices,private gradeServices: GradeServices,private corpsServices: CorpsServices,private enseingnantpermanentService:EnseignantPermanentServices, private enfantservice: EnfantServices, private departementServices: DepartementServices, public http: Http, public router: Router) {
   }
 
   ngOnInit() {
@@ -45,6 +51,8 @@ export class EnseignantPermanentComponent implements OnInit {
     this.chercherGrad();
     this.chercherCorp();
     this. chercherPoste();
+    this.enfants==new Array<Enfant>(this.nbEnfant);
+
   }
   getErrorMessage() {
     return this.email.hasError('required') ? 'Vous devez entrer une valeur' :
@@ -62,15 +70,29 @@ export class EnseignantPermanentComponent implements OnInit {
         console.log(err);
       })
   }
+  EnregistrerAgrade() {
+    this.agrade.grade = this.grade;
+    this.agrade.personnel = this.enseignantP;
+    this.agradeServices.saveAGrade(this.agrade)
+      .subscribe(data => {
+        alert("Success d'ajout");
+        console.log(data);
+      }, err => {
+        console.log(err);
+      });
+  }
   Enregistrer() {
   this.enseignantP.departement=this.departement;
-  this.enseingnantpermanentService.updateEnseignantPermanent(this.enseignantP)
+  this.enseignantP.corps=this.corp;
+  //this.enseignantP.pos
+  this.enseingnantpermanentService.saveEnseignantPermanent(this.enseignantP)
       .subscribe(data=>{
         alert("Success d'ajout");
         console.log(data);
       },err=>{
         console.log(err);
       });
+   //this.EnregistrerAgrade();
   }
 
   annuler() {
@@ -107,23 +129,5 @@ export class EnseignantPermanentComponent implements OnInit {
       },err=>{
         console.log(err);
       })
-  }
-  EnregistrerGrade() {
-    this.enseingnantpermanentService.updateEnseignantPermanent(this.enseignantP)
-      .subscribe(data=>{
-        alert("Success d'ajout");
-        console.log(data);
-      },err=>{
-        console.log(err);
-      });
-  }
-  EnregistrerDip() {
-    this.enseingnantpermanentService.updateEnseignantPermanent(this.enseignantP)
-      .subscribe(data=>{
-        alert("Success d'ajout");
-        console.log(data);
-      },err=>{
-        console.log(err);
-      });
   }
 }

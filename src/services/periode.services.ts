@@ -12,8 +12,8 @@ export class PeriodeServices {
       .map(resp => resp.json())
   }
 
-  getPeriode(id: number) {
-    return this.http.get("http://localhost:8080/Periode/" + id)
+  getPeriode(id_periode: number) {
+    return this.http.get("http://localhost:8080/Periode/" + id_periode)
       .map(resp => resp.json())
   }
 
@@ -23,12 +23,12 @@ export class PeriodeServices {
   }
 
   updatePeriode(periode: Periode) {
-    return this.http.put("http://localhost:8080/ModifierPeriode/"+ periode.id, periode)
+    return this.http.put("http://localhost:8080/ModifierPeriode/"+ periode.id_periode, periode)
       .map(resp => resp.json())
   }
 
-  deletePeriode(id: number) {
-    return this.http.delete("http://localhost:8080/SupprimerPeriode/" + id)
+  deletePeriode(id_periode: number) {
+    return this.http.delete("http://localhost:8080/SupprimerPeriode/" + id_periode)
       .map(resp => resp.json())
   }
   getAllPeriodes() {

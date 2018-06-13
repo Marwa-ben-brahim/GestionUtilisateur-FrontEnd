@@ -33,18 +33,8 @@ export class ListeEnseignantPermanentComponent implements OnInit {
   onEditEnseignant(matricule:number){
     this.router.navigate(['editMutation',matricule]);
   }
-  onDeleteEnseignant(e:EnseignantPermanent) {
-    let confirm = window.confirm("Etes-vous sûre?");
-    if (confirm == true) {
-      this.enseingnantpermanentService.deleteEnseignantPermanent(e.matricule)
-        .subscribe(data => {
-          this.pageEnseignant.content.splice(
-            this.pageEnseignant.content.indexOf(e), 1
-          );
-          console.log(data);
-        }, err => {
-          console.log(err);
-        })
-    }
+  onDetailsEnseignant(matricule:number) {
+    this.router.navigate(['DetailsEnseignant',matricule]);
+
   }
 }

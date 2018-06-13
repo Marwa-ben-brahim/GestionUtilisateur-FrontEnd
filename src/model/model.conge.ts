@@ -2,11 +2,12 @@ import {TypeConge} from './model.typeConge';
 import {Personnel} from './model.personnel';
 
 export class Conge{
-  idCong:number=0;
+  idCong:number;
   dateDebut:Date=null;
   dateFin:Date=null;
   reprise:boolean;
-  valide:boolean;
+  valide:string;
   typeconge:TypeConge=null;
   personnel:Personnel=null;
+  nbJourRest:number;
 }
