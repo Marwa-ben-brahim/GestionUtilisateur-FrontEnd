@@ -46,7 +46,7 @@
         <tr *ngFor="let p of periodes">
           <td>{{p.id_periode}}</td>
           <td>{{p.personnel.nom+" "+p.personnel.prenom}}</td>
-          <td>{{p.posteAdministrative.libelle}}</td>
+          <td>{{p.posteAdmin.libelle}}</td>
           <td>{{p.dateDebut}}</td>
           <td>{{p.dateFin}}</td>
           <td><a (click)="onEditPeriode(p.id_periode)" class="clickable"><mat-icon >create</mat-icon></a> </td>

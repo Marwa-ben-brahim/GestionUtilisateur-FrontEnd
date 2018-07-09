@@ -1,47 +1,51 @@
-<div>
-  <mat-toolbar color="primary" role="header">
-    <span> <button mat-button [matMenuTriggerFor]="user">Utilisateur</button></span>
-    <span> <button mat-button [matMenuTriggerFor]="enseignant">Enseignant</button></span>
-    <span> <button mat-button routerLink="/mutation">Mutation</button></span>
-    <span> <button mat-button [matMenuTriggerFor]="conge">Congé</button></span>
-    <span> <button mat-button [matMenuTriggerFor]="donneesbase">Données des Bases</button></span>
-    <span class="example-fill-remaining-space"></span>
-  </mat-toolbar>
-    <mat-menu #donneesbase="matMenu">
-      <button mat-menu-item routerLink="/grade">Grade</button>
-      <button mat-menu-item routerLink="/diplome" >Diplôme</button>
-      <button mat-menu-item routerLink="/departement">Departement</button>
-      <button mat-menu-item routerLink="/corps" >Corps</button>
-      <button mat-menu-item routerLink="/typeConge"> Type Congé</button>
-      <button mat-menu-item routerLink="/typeMutation">Type Mutation</button>
-  </mat-menu>
-  <mat-menu #enseignant="matMenu">
-    <button mat-menu-item [matMenuTriggerFor]="enseignantpermanent">Enseignant Permanent</button>
-    <button mat-menu-item [matMenuTriggerFor]="enseignantvacataire">Enseignant Vacataire</button>
-  </mat-menu>
-  <mat-menu #user="matMenu">
-    <button mat-menu-item routerLink="/new-user">Ajouter Utilisateur</button>
-    <button mat-menu-item routerLink="/users">Consulter Liste des utilisateurs</button>
-  </mat-menu>
-  <mat-menu #enseignantpermanent="matMenu">
-    <button mat-menu-item routerLink="/enseignantpermanent">Ajouter Enseignant</button>
-    <button mat-menu-item routerLink="/ListeEnseignantP">Consulter la Liste des Enseignants</button>
-    <button mat-menu-item routerLink="/DiplomePersonnel">Dipôme Personnel</button>
-    <button mat-menu-item routerLink="/Agrade">Grade Personnel</button>
-    <button mat-menu-item [matMenuTriggerFor]="poste">Poste Administratif</button>
-  </mat-menu>
-  <mat-menu #enseignantvacataire="matMenu">
-    <button mat-menu-item >Ajouter Personnel</button>
-    <button mat-menu-item>Consulter la Liste des Enseignants</button>
-  </mat-menu>
-  <mat-menu #conge="matMenu">
-  <button mat-menu-item routerLink="/conge">Ajouter Conge</button>
-  <button mat-menu-item routerLink="/consultationConge">Consulter Liste des demandes</button>
-  <button mat-menu-item routerLink="/historiqueConge">Consulter Historique</button>
-</mat-menu>
-  <mat-menu #poste="matMenu">
-    <button mat-menu-item routerLink="/posteAdmin">Poste Administratif</button>
-    <button mat-menu-item routerLink="/periode">Periode</button>
-  </mat-menu>
+<div class="main">
+  <mat-toolbar role="header">
+         <span class="example-fill-remaining-space"></span>
+              <div class="nav toggle">
+                <a id="menu_toggle" (click)="toggleClicked($event)"><i fa [icon]="'bars'"></i></a>
+              </div>              
+              <ul class="nav navbar-nav navbar-right">
+                  <li role="presentation" class="dropdown">
+                      <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-bell"></i>
+                        <span class="badge bg-green">{{nomberConge}}</span>
+                      </a>
+                      <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                        <li *ngFor="let c of pageConge?.content">
+                          <a routerLink="/consultationConge">
+                            <span class="image"><img src="../../assets/images/img.jpg" alt="Profile Image" /></span>
+                            <span>
+                              <span>{{c.personnel.prenom+"  "+c.personnel.nom}}</span>
+                              <span class="time">Il y a 3 minutes</span>
+                            </span>
+                            <span class="message">
+                              {{c.personnel.prenom+"  "+c.personnel.nom}} a une demande de conge
+                            </span>
+                          </a>
+                        </li>
+                      <li>
+                          <div class="text-center">
+                            <a routerLink="/consultationConge">
+                              <strong>Voir Tous</strong>
+                              <i class="fa fa-angle-right"></i>
+                            </a>
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+                <li class="">
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="../../assets/images/img.jpg" alt="">
+                    <span class="fa fa-angle-down"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-usermenu pull-right">
+                    <li><a routerLink="/profile"><strong>{{nom}}</strong></a></li> 
+                    <li><a routerLink="/profile"> Profile</a></li>
+                    <li><a routerLink="/login"><i class="fa fa-sign-out pull-right"></i> Déconnexion</a></li>
+                  </ul>
+                </li>
+              </ul>
+       </mat-toolbar>
+       <div class="menu"><app-side-bar></app-side-bar></div>
 </div>
 

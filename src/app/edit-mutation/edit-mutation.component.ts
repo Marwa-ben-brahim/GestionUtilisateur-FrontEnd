@@ -5,7 +5,9 @@ import {MutationServices} from '../../services/Mutation.services';
 import {Personnel} from '../../model/model.personnel';
 import {TypeMutation} from '../../model/model.typeMutation';
 import {TypeMutationsServices} from '../../services/typeMutation.services';
-import {UsersServices} from '../../services/users.services';
+import {PersonnelServices} from "../../services/personnel.services";
+import {OrganismeAccueil} from "../../model/model.organismeAccueil";
+import {OrganismeAccueilServices} from "../../services/organismeAccueil.services";
 
 @Component({
   selector: 'app-edit-mutation',
@@ -20,20 +22,39 @@ export class EditMutationComponent implements OnInit {
   typeMutation:TypeMutation;
   typeMutations:Array<TypeMutation>=new Array<TypeMutation>();
   id_mut:number=0;
+  orgAccueil:OrganismeAccueil=new OrganismeAccueil();
+  orgAccueils:Array<OrganismeAccueil>=new Array<OrganismeAccueil>();
   constructor(public activatedRoute:ActivatedRoute,
               public typeMutationServices:TypeMutationsServices,
               private mutationService:MutationServices,
-              private userservices:UsersServices,
+              private personnelServices:PersonnelServices,
+              private orgAccueilServices:OrganismeAccueilServices,
               public router:Router) {
     this.id_mut=activatedRoute.snapshot.params['idMut'];
   }
 
   ngOnInit() {
-    this.AfficherPersonnel();
-    this.chercherType();
+
     this.mutationService.getMutation(this.id_mut)
       .subscribe(data=> {
         this.mutation = data;
+        this.personnel=this.mutation.personnel;
+        this.typeMutation=this.mutation.typemutation;
+        this.orgAccueil=this.mutation.organismeAccueil;
+        console.log(data);
+      },err=>{
+        console.log(err);
+      })
+
+    this.AfficherPersonnel();
+    this.chercherType();
+    this.chercherOrg();
+  }
+  chercherOrg()
+  {
+    this.orgAccueilServices.allOrganismeAccueils()
+      .subscribe(data=>{
+        this.orgAccueils=data;
         console.log(data);
       },err=>{
         console.log(err);
@@ -41,7 +62,7 @@ export class EditMutationComponent implements OnInit {
   }
   AfficherPersonnel()
   {
-    this.userservices.getAllPersonnel()
+    this.personnelServices.getAllPersonnel()
       .subscribe(data=>{
         this.personnels=data;
         console.log(data);
@@ -60,6 +81,9 @@ export class EditMutationComponent implements OnInit {
       })
   }
   updateMutation(){
+    this.mutation.personnel=this.personnel;
+    this.mutation.typemutation=this.typeMutation;
+    this.mutation.organismeAccueil=this.orgAccueil;
     this.mutationService.updateMutation(this.mutation)
       .subscribe(data=>{
         console.log(data);

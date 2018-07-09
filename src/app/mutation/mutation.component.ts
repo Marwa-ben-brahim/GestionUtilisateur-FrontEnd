@@ -7,6 +7,9 @@ import {Personnel} from '../../model/model.personnel';
 import {UsersServices} from '../../services/users.services';
 import {TypeMutation} from "../../model/model.typeMutation";
 import {TypeMutationsServices} from "../../services/typeMutation.services";
+import {PersonnelServices} from "../../services/personnel.services";
+import {OrganismeAccueil} from "../../model/model.organismeAccueil";
+import {OrganismeAccueilServices} from "../../services/organismeAccueil.services";
 
 @Component({
   selector: 'app-mutation',
@@ -25,16 +28,19 @@ export class MutationComponent implements OnInit {
   personnel:Personnel=new Personnel();
   typeMutation:TypeMutation;
   typeMutations:Array<TypeMutation>=new Array<TypeMutation>();
-  constructor(private typeMutationServices:TypeMutationsServices,private mutationServices:MutationServices,private userservices:UsersServices,public http:Http,public router:Router) { }
+  orgAccueil:OrganismeAccueil=new OrganismeAccueil();
+  orgAccueils:Array<OrganismeAccueil>=new Array<OrganismeAccueil>();
+  constructor(private typeMutationServices:TypeMutationsServices,private orgAccueilServices:OrganismeAccueilServices,private mutationServices:MutationServices,private personnelServices:PersonnelServices,public http:Http,public router:Router) { }
 
   ngOnInit() {
     this.chercher();
     this.AfficherPersonnel();
     this.chercherType();
+    this. chercherOrg();
   }
   AfficherPersonnel()
   {
-    this.userservices.getAllPersonnel()
+    this.personnelServices.getAllPersonnel()
       .subscribe(data=>{
         this.personnels=data;
         console.log(data);
@@ -53,9 +59,21 @@ export class MutationComponent implements OnInit {
         console.log(err);
       })
   }
+  chercherOrg()
+  {
+    this.orgAccueilServices.allOrganismeAccueils()
+      .subscribe(data=>{
+        this.orgAccueils=data;
+        this.pages=new Array(data.totalPages);
+        console.log(data);
+      },err=>{
+        console.log(err);
+      })
+  }
   ajouter(){
     this.mutation.personnel=this.personnel;
     this.mutation.typemutation=this.typeMutation;
+    this.mutation.organismeAccueil=this.orgAccueil;
     this.mutationServices.saveMutation(this.mutation)
       .subscribe(data=>{
         alert("Success d'ajout");

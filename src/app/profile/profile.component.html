@@ -1,0 +1,59 @@
+<app-index></app-index>
+<div class="container spacer">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{enseignantP.prenom +" "+enseignantP.nom}}</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="../../assets/images/img.jpg" class="img-circle img-responsive"> </div>
+    <div class=" col-md-9 col-lg-9 "> 
+        <table class="table table-user-information">
+          <tbody>
+            <tr>
+              <td>
+                  Nom et Prenom :
+              </td>
+              <td>
+                  {{enseignantP.prenom +" "+enseignantP.nom}}
+                </td>
+            </tr>
+            <tr>
+            <td>
+                Date de Naissance: 
+            </td>
+            <td>
+                {{enseignantP.datenaissance}} 
+              </td>
+          </tr>
+          <tr>
+              <td>
+                E-mail:
+              </td>
+              <td>
+                {{enseignantP.email}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Adresse:
+                </td>
+                <td>
+                    {{enseignantP.adresse}}
+                  </td>
+              </tr>
+              <tr>
+                <td>
+                    Téléphone:
+                </td>
+                <td>
+                    {{enseignantP.telephone}}
+                  </td>
+              </tr>
+             
+            </tbody></table>
+          </div>
+        </div>
+</div>
+</div>
+</div>

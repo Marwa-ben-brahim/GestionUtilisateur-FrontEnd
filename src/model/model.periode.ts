@@ -7,5 +7,5 @@ export class Periode {
   dateDebut:Date=null;
   dateFin:Date=null;
   personnel:Personnel=null;
-  posteAdministrative:PosteAdministrative=null;
+  posteAdmin:PosteAdministrative=null;
 }

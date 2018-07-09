@@ -2,7 +2,7 @@ import { Component, OnInit,ViewChild } from '@angular/core';
 import {Diplome} from "../../model/model.diplome";
 import {DiplomeServices} from "../../services/diplome.services";
 import {Personnel} from "../../model/model.personnel";
-import {UsersServices} from "../../services/users.services";
+import {PersonnelServices} from "../../services/personnel.services";
 import {Router} from "@angular/router";
 import {Http} from "@angular/http";
 import {DiplomePersonnelServices} from "../../services/diplomepersonnel.services";
@@ -28,7 +28,7 @@ export class DiplomePersonnelComponent implements OnInit {
   displayedColumns = ['id_DipP', 'personnel', 'diplome', 'date'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSource=new MatTableDataSource<DiplomePersonnel>(this.diplomeps);
-  constructor( private diplomeServices: DiplomeServices,private diplomepService:DiplomePersonnelServices,public http:Http, private userservices:UsersServices, public router:Router)
+  constructor( private diplomeServices: DiplomeServices,private diplomepService:DiplomePersonnelServices,public http:Http, private personnelServices:PersonnelServices, public router:Router)
   { }
 
   ngOnInit() {
@@ -64,7 +64,7 @@ export class DiplomePersonnelComponent implements OnInit {
   {}
   AfficherPersonnel()
   {
-    this.userservices.getAllPersonnel()
+    this.personnelServices.getAllPersonnel()
       .subscribe(data=>{
         this.personnels=data;
         console.log(data);

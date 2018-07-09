@@ -5,7 +5,7 @@ import {PeriodeServices} from '../../services/periode.services';
 import {Personnel} from '../../model/model.personnel';
 import {PosteAdministrative} from '../../model/model.posteAdministrative';
 import {PosteAdministrativeServices} from '../../services/posteAdministrative.services';
-import {UsersServices} from '../../services/users.services';
+import {PersonnelServices} from '../../services/personnel.services';
 
 @Component({
   selector: 'app-edit-periode',
@@ -23,7 +23,7 @@ export class EditPeriodeComponent implements OnInit {
   constructor(public activatedRoute: ActivatedRoute,
               public periodeService: PeriodeServices,
               private posteServices: PosteAdministrativeServices,
-              private userservices: UsersServices,
+              private personnelservices: PersonnelServices,
               public router: Router) {
     this.id = activatedRoute.snapshot.params['id'];
   }
@@ -41,7 +41,7 @@ export class EditPeriodeComponent implements OnInit {
   }
   AfficherPersonnel()
   {
-    this.userservices.getAllPersonnel()
+    this.personnelservices.getAllPersonnel()
       .subscribe(data=>{
         this.personnels=data;
         console.log(data);
@@ -62,7 +62,7 @@ export class EditPeriodeComponent implements OnInit {
 
   updatePeriode() {
     this.periode.personnel=this.personnel;
-    this.periode.posteAdministrative=this.posteAdmin;
+    this.periode.posteAdmin=this.posteAdmin;
     this.periodeService.updatePeriode(this.periode)
       .subscribe(data => {
         console.log(data);

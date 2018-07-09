@@ -6,7 +6,7 @@
     <div>
       <form>
         <mat-form-field>
-          <input matInput type="text" name="msg1" placeholder="Nom de Departement" [(ngModel)]="departement.nomDep">
+          <input matInput type="text" placeholder="Nom de Departement" [(ngModel)]="departement.nomDep">
         </mat-form-field>
         <button mat-icon-button color="primary" (click)="ajouter()"><mat-icon>add_circle</mat-icon></button>
       </form>
@@ -14,12 +14,10 @@
   </div>
 </div>
   <div class="panel panel-default">
-    <div class="panel-heading">Afficher Departement
-        <input type ="text" placeholder="Nom de Departement" [(ngModel)]="motCle"/>
-      <button mat-icon-button (click)="doSearch()"><mat-icon>search</mat-icon></button>
-       </div>
+    <div class="panel-heading">Afficher Departement</div>
     <div class="panel-body">
-
+      <input type ="text" placeholder="Nom de Departement" [(ngModel)]="motCle"/>
+      <button mat-icon-button (click)="doSearch()"><mat-icon>search</mat-icon></button>
       <table class="table table-striped">
         <tr>
           <th>ID</th><th>Nom</th><th>Modifier</th><th>Supprimer</th>

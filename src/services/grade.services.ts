@@ -23,7 +23,7 @@ export class GradeServices {
   }
 
   updateGrade(grade: Grade) {
-    return this.http.put("http://localhost:8080/ModifierGrade/"+ grade.id, grade)
+    return this.http.put("http://localhost:8080/ModifierGrade/" + grade.id, grade)
       .map(resp => resp.json())
   }
 

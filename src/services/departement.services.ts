@@ -1,11 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
-import {Departement} from '../model/model.departement';
+import {Departement} from "../model/model.departement";
 
 @Injectable()
 export class DepartementServices{
   constructor(public http:Http) {
-
   }
   getDepartements(motCle:string,page:number,size:number){
     return this.http.get("http://localhost:8080/chercherDepartement?mc="+motCle+"&size="+size+"&page="+page)
@@ -15,8 +14,8 @@ export class DepartementServices{
     return this.http.get("http://localhost:8080/Departements")
       .map(resp=>resp.json())
   }
-  getDepartement(id:number){
-    return this.http.get("http://localhost:8080/Departement/"+id)
+  getDepartement(idDep:number){
+    return this.http.get("http://localhost:8080/Departement/"+idDep)
       .map(resp=>resp.json())
   }
   saveDepartement(departement:Departement){
@@ -31,4 +30,4 @@ export class DepartementServices{
     return this.http.delete("http://localhost:8080/SupprimerDepartement/"+id)
       .map(resp=>resp.json())
   }
-}
+  }

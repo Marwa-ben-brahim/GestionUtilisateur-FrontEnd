@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {UsersServices} from "../../services/users.services";
 import {ActivatedRoute, Router} from "@angular/router";
-import {User} from "../../model/model.user";
 import {Http} from "@angular/http";
+import {EnseignantPermanent} from "../../model/model.enseignantpermanent";
+import {Personnel} from "../../model/model.personnel";
+import {EnseignantPermanentServices} from "../../services/enseignantpermanent.services";
+import { AdministratifServices } from '../../services/administratif.services';
+import { PersonnelServices } from '../../services/personnel.services';
 
 @Component({
   selector: 'app-login',
@@ -15,23 +18,72 @@ export class LoginComponent implements OnInit {
   currentPage:number=0;
   pages:Array<number>;
   size:number=5;
-  pageUsers:any;
-  constructor(public http:Http,public userService:UsersServices,
+  idUser:number;
+  type:string="admin";
+  personnel:Personnel=new Personnel();
+  constructor(public http:Http,
+              public personnelService:PersonnelServices,
+              public enseignantPermServices:EnseignantPermanentServices,
+              public administratifServices:AdministratifServices,
+              public personnelServices:PersonnelServices,
               public router:Router) { }
 
   ngOnInit() {
   }
   doSearch(){
-    this.userService.getUser(this.login)
+    
+    this.personnelService.getPersonnelLogin(this.login,this.motpasse)
       .subscribe(data=>{
-        alert("Success de s'authentifier");
-        this.router.navigate(['index']);
-        console.log(data)
+        this.personnel=data;
+        console.log(this.personnel);
+        console.log(this.personnel.prenom+" "+this.personnel.nom);
+      // this.TypePersonnel(this.user.personnel)
+      this.isEnseignantP(this.personnel);
+      this.isAdmin(this.personnel);
+      this.idUser=this.personnel.matricule;
+        sessionStorage.setItem('type',this.type);
+       sessionStorage.setItem('idUser',this.idUser+"");
+       sessionStorage.setItem('nom',this.personnel.prenom+" "+this.personnel.nom);
+       this.router.navigate(['index']);
       },err=>{
         console.log(err);
       })
   }
   chercheUser(){
     this.doSearch();
+  }
+  TypePersonnel(p:Personnel)
+  {    
+    this.personnelServices.getTypePersonnel(p.matricule)
+    .subscribe(data=>{
+      console.log(data);
+      this.type=data;
+    },err=>{
+      console.log(err);
+    })
+  }
+  isAdmin(p:Personnel)
+  {
+    this.administratifServices.getAdministratif(p.matricule)
+      .subscribe(data=>{
+        console.log(data)
+       this.personnel=data;
+      },err=>{
+        console.log(err);
+      })
+      if(this.personnel!=null)
+      this.type="admin";
+  }
+  isEnseignantP(p:Personnel)
+  {
+    this.enseignantPermServices.getEnseignantPermanent(p.matricule)
+      .subscribe(data=>{
+        console.log(data)
+       this.personnel=data;
+      },err=>{
+        console.log(err);
+      })
+      if(this.personnel!=null)
+      this.type="enseignant";
   }
 }

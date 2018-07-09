@@ -15,8 +15,8 @@ export class DiplomeServices{
     return this.http.get("http://localhost:8080/Diplomes")
       .map(resp=>resp.json())
   }
-  getDiplome(id:number){
-    return this.http.get("http://localhost:8080/Diplome/"+id)
+  getDiplome(idDip:number){
+    return this.http.get("http://localhost:8080/Diplome/"+idDip)
       .map(resp=>resp.json())
   }
   saveDiplome(diplome:Diplome){
