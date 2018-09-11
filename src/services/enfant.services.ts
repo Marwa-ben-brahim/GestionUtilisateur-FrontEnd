@@ -9,6 +9,11 @@ export class EnfantServices {
     return this.http.get("http://localhost:8080/chercherEnfant?mc="+motCle+"&size="+size+"&page="+page)
       .map(resp=>resp.json())
   }
+  
+  getNbEnfants(motCle:number){
+    return this.http.get("http://localhost:8080/chercherNbEnfant?mc="+motCle)
+      .map(resp=>resp.json())
+  }
   getEnfant(num:number){
     return this.http.get("http://localhost:8080/Enfant/"+num)
       .map(resp=>resp.json())
@@ -30,5 +35,9 @@ export class EnfantServices {
     return this.http.get("http://localhost:8080/Enfants")
       .map(resp=>resp.json())
   }
-
+  
+  getEnfantsPersonnel(motCle:number){
+    return this.http.get("http://localhost:8080/chercherPersonnelEnfant?mc="+motCle)
+      .map(resp=>resp.json())
+  }
 }

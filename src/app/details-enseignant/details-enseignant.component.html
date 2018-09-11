@@ -1,37 +1,212 @@
 <app-index></app-index>
 <div class="container spacer">
-<mat-card class="example-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Enseignant Détails</mat-card-title>
-    <mat-card-subtitle>{{enseignantP.prenom+"  "+enseignantP.nom}}</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src="../../assets/images/enseig.png" alt="Enseignant">
-  <mat-card-content>
+    <div class="panel panel-info">
+        <div class="panel-heading">{{'Table.CDetailsEnsg' | translate}} {{nom}}</div>
+        <div class="panel-body">
+<h3 class="site-title">{{'Table.CDetailsEnsg' | translate}}</h3>
+<div>
+<div class="col-md-5">
+  <img class="img-responsive" src="../../assets/images/user_pic.png" style="width:30%;">
+                <!-- <i class="fa fa-wrench"> Edit</i> -->
+ <div class="clearfix">
+   <h3> {{nom}}</h3>
+   <i class="fa fa-envelope"></i>{{enseignantP.email}}<br>
+   <i class="fa fa-gift"></i>{{enseignantP.datenaissance|date:'dd/MM/yyyy'}}<br>
+   <i class="fa fa-phone"></i>(+216){{enseignantP.telephone}}<br>
+   <!-- <i class="fa fa-map-marker"></i>{{enseignantP.lieuNaissance}}<br> -->
+   <div *ngIf="lang=='fr'"><i class="fa fa-map-marker"></i>{{enseignantP.adresse}}</div>
+   <div *ngIf="lang=='ar'"><i class="fa fa-map-marker"></i>{{enseignantP.adresseAr}}</div>
 
-<h4>Données Personnelles</h4>
-    <hr>
-    Nom et Prenom :{{enseignantP.prenom +" "+enseignantP.nom}}<br>
-    Nom de Pére : {{enseignantP.nompere}}<br>
-    Date de Naissance: {{enseignantP.datenaissance}}<br>
-    Lieu de Naissance: {{enseignantP.lieuNaissance}}<br>
-    Sexe: {{enseignantP.sexe}}<br>
-    E-mail: {{enseignantP.email}}<br>
-    Téléphone: {{enseignantP.telephone}}<br>
-    Adresse: {{enseignantP.adresse}}<br>
-    Etat Civil: {{enseignantP.etatCivil}}<br>
-    Nom Conjoint: {{enseignantP.nomConjoint}}<br>
-    Code Postal: {{enseignantP.codepostal}}<br>
-    Spécialité: {{enseignantP.specialite}}<br>
-    RIB: {{enseignantP.rib}}<br>
-    <h4>Données Professionnelles</h4>
-    <hr>
-    Date de Recrutement: {{enseignantP.dateRecrutement}}<br>
-    Date de Titularisation: {{enseignantP.dateTitularisation}}<br>
-
-  </mat-card-content>
-  <mat-card-actions>
- <!--<button mat-button>Imprimer</button>-->
-  </mat-card-actions>
-</mat-card>
+ </div>
+</div>
+       <div class="col-md-7">
+            <div class="profile-block">
+       <ul class="list-group">
+<li class="list-group-item">{{'Table.CAge' | translate}} <span class="badge">30</span></li>
+<li class="list-group-item">{{'Table.CNBEnf' | translate}}<span class="badge">{{nbEnfant}}</span></li>
+<li class="list-group-item">{{'Table.CNbConges' | translate}}<span class="badge">{{nbConge}}</span></li>
+<li class="list-group-item">{{'Table.CNbDiplome' | translate}}<span class="badge">{{nbdiplome}}</span></li>
+<li class="list-group-item">{{'Table.CNbGrade' | translate}}<span class="badge">{{nbGrade}}</span></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li><br><br>
+</ul>
+   </div>
+       </div>
+      </div>
+      <div class="rightPos">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{'Table.CAjouterEnseigAr' | translate}}
+              </mat-panel-title>
+              <mat-panel-description *ngIf="lang=='fr'">
+                  {{enseignantP.prenom+"   "+enseignantP.nom}}
+                  </mat-panel-description>
+                  <mat-panel-description *ngIf="lang=='ar'">
+                    {{enseignantP.prenomAr+"   "+enseignantP.nomAr}}
+                    </mat-panel-description>
+            </mat-expansion-panel-header>
+<div *ngIf="lang==='fr'">
+    <b>Nom et Prenom :</b>{{enseignantP.prenom +" "+enseignantP.nom}}<br>
+    <b>Nom de Pére :</b> {{enseignantP.nompere}}<br>
+    <b>Sexe: </b>{{enseignantP.sexe}}<br>
+    <b>Lieu de Naissance: </b> {{enseignantP.lieuNaissance}}<br>
+    <b>Adresse: </b>{{enseignantP.adresse}}<br>
+    <b>Etat Civil:</b> {{enseignantP.etatCivil}}<br>
+    <div *ngIf="enseignantP.etatCivil=='Marié(e)'"> <b>Nom Conjoint:</b> {{enseignantP.nomConjoint}}<br>
+      <b>Profession de Conjoint:</b> {{enseignantP.profConjoint}}<br>
+    </div>
+    <b>Code Postal:</b> {{enseignantP.codepostal}}<br>
+    <div *ngIf="enseignantP.specialite!=null"><b>Spécialité: </b>{{enseignantP.specialite.libelleSp}}</div>
+    <b>RIB:</b> {{enseignantP.rib}}<br>
+    <b>Etat:</b> {{enseignantP.etat.libelleEtatAr}}<br>
+  </div>
+  <div *ngIf="lang==='ar'">
+      <b>الإسم و اللقب:</b> {{enseignantP.prenomAr +" "+enseignantP.nomAr}}<br>
+      <b>إسم الأب :</b> {{enseignantP.nompereAr}}<br>
+    <b>الجنس :</b>{{enseignantP.sexeAr}}<br>
+    <b>مكان الولادة :</b> {{enseignantP.lieuNaissanceAr}}<br>
+    <b>العنوان :</b>{{enseignantP.adresseAr}}<br>
+    <b>الحالة المدنية:</b> {{enseignantP.etatCivilAr}}<br>
+    <div *ngIf="enseignantP.etatCivilAr=='(متزوج(ة'"><b>إسم القرين:</b> {{enseignantP.nomConjointAr}}<br>
+    <b>مهنة القرين:</b> {{enseignantP.profConjointAr}}<br></div>
+    <b>الترقيم البريدي :</b> {{enseignantP.codepostal}}<br>
+    <b>رقم الحستب الجاري:</b> {{enseignantP.rib}}<br>
+    <b>الحالة:</b> {{enseignantP.etat.libelleEtatAr}}<br>
+</div>
+ </mat-expansion-panel>
+  <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+       {{'Table.CDonneesProf' | translate}}
+        </mat-panel-title>
+        <mat-panel-description *ngIf="lang=='fr'">
+          {{enseignantP.prenom+"   "+enseignantP.nom}}
+          </mat-panel-description>
+          <mat-panel-description *ngIf="lang=='ar'">
+            {{enseignantP.prenomAr+"   "+enseignantP.nomAr}}
+            </mat-panel-description>
+      </mat-expansion-panel-header>
+    <b> {{'Table.CDateRect' | translate}}</b>{{enseignantP.dateRecrutement|date:'dd/MM/yyyy'}}<br>
+    <b> {{'Table.CDateTit' | translate}}</b> {{enseignantP.dateTitularisation|date:'dd/MM/yyyy'}}<br>
+    <div *ngIf="enseignantP.departement!=null && lang==='fr'"><b>Departement:</b> {{enseignantP.departement.nomDep}}</div>
+    <div *ngIf="enseignantP.departement!=null && lang==='ar'"><b>القسم:</b> {{enseignantP.departement.nomDepAr}}</div>
+    <div *ngIf="enseignantP.specialite!=null && lang==='fr'"><b>Spécialité :</b>{{enseignantP.specialite.libelleSp}}</div>
+    <div *ngIf="enseignantP.specialite!=null && lang==='ar'"><b>الإختصاص :</b>{{enseignantP.specialite.libelleSpAr}}</div> 
+    <div *ngIf="enseignantP.organismeOrigine!=null && lang==='fr'"><b>Organisme d'origine :</b>{{enseignantP.organismeOrigine.libelleOrg}}</div>
+    <div *ngIf="enseignantP.organismeOrigine!=null && lang==='ar'"><b>المؤسسة الأصلية :</b>{{enseignantP.organismeOrigine.libelleOrgAr}}</div>   
+  </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{'SideBar.SMDiplomes' | translate}}
+          </mat-panel-title>
+          <mat-panel-description *ngIf="lang=='fr'">
+            {{enseignantP.prenom+"   "+enseignantP.nom}}
+            </mat-panel-description>
+            <mat-panel-description *ngIf="lang=='ar'">
+              {{enseignantP.prenomAr+"   "+enseignantP.nomAr}}
+              </mat-panel-description>
+        </mat-expansion-panel-header>
+    <div *ngIf="diplomepers!=null">
+        <table class="table table-striped">
+            <tr>
+              <th>{{'SideBar.MDiplome' | translate}}</th><th>{{'Table.CDateDip' | translate}}</th>
+            </tr>
+            <tr *ngFor="let d of diplomepers; let i=index">
+              <td *ngIf="lang==='fr'">{{d.diplome.titreDip}}</td>
+              <td *ngIf="lang==='ar'">{{d.diplome.titreDipAr}}</td>
+              <td>{{d.date}}</td>
+            </tr></table></div>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{'SideBar.MPoste' | translate}}
+              </mat-panel-title>
+              <mat-panel-description *ngIf="lang=='fr'">
+                {{enseignantP.prenom+"   "+enseignantP.nom}}
+                </mat-panel-description>
+                <mat-panel-description *ngIf="lang=='ar'">
+                  {{enseignantP.prenomAr+"   "+enseignantP.nomAr}}
+                  </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div *ngIf="periodes!=null">
+                <table class="table table-striped">
+                    <tr>
+            <th>{{'Table.CID'| translate}}</th><th>{{'SideBar.MPoste' | translate }}</th><th>{{'Table.CDateDebut' | translate}}</th><th>{{'Table.CDateFin' | translate}}</th>
+                    </tr>
+                    <tr *ngFor="let p of periodes; let i=index">
+                      <td>{{p.id_periode}}</td>
+                      <td *ngIf="p.posteAdmin!=null && lang==='fr'">{{p.posteAdmin.libellePos}}</td>
+                      <td *ngIf="p.posteAdmin!=null && lang==='ar'">{{p.posteAdmin.libellePosAr}}</td>
+                      <td *ngIf="p.posteAdmin==null">{{p.posteAdmin}}</td>
+                      <td>{{p.dateDebut}}</td>
+                      <td>{{p.dateFin}}</td>
+                    </tr></table>
+                </div>
+                </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{'SideBar.MGrade' | translate}}
+          </mat-panel-title>
+          <mat-panel-description *ngIf="lang=='fr'">
+            {{enseignantP.prenom+"   "+enseignantP.nom}}
+            </mat-panel-description>
+            <mat-panel-description *ngIf="lang=='ar'">
+              {{enseignantP.prenomAr+"   "+enseignantP.nomAr}}
+              </mat-panel-description>
+        </mat-expansion-panel-header>
+    <div *ngIf="AGrades!=null">
+      <table class="table table-striped">
+          <tr>
+            <th>{{'SideBar.MGrade' | translate }}</th><th>{{'Table.CDateGrd' | translate }}</th><th>{{'SideBar.MCorps' | translate }}</th>
+          </tr>
+          <tr *ngFor="let g of AGrades; let i=index">
+            <td *ngIf="lang=='fr'">{{g.grade.titre}}</td>
+            <td *ngIf="lang=='ar'">{{g.grade.titreAr}}</td>
+            <td>{{g.dateEvaluation}}</td>
+            <td *ngIf="g.grade.corps!=null && lang=='fr'">{{g.grade.corps.libelleCps}}</td>
+            <td *ngIf="g.grade.corps!=null && lang=='ar'">{{g.grade.corps.libelleCpsAr}}</td>
+            <td *ngIf="g.grade.corps==null">{{g.grade.corps}}</td>
+          </tr></table>
+    </div>
+    </mat-expansion-panel>
+          <mat-expansion-panel *ngIf="enseignantP.etatCivil=='Marié(e)'">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{'Table.CEnfants' | translate}}
+                </mat-panel-title>
+                <mat-panel-description *ngIf="lang=='fr'">
+                  {{enseignantP.prenom+"   "+enseignantP.nom}}
+                  </mat-panel-description>
+                  <mat-panel-description *ngIf="lang=='ar'">
+                    {{enseignantP.prenomAr+"   "+enseignantP.nomAr}}
+                    </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div *ngIf="enfants!=null">
+                  <form #enfant *ngFor="let e of enfants; let i=index">
+                    <mat-form-field *ngIf="lang=='fr'">
+                      <input matInput placeholder="Nom Enfant" type="text" name="nomenf" required [(ngModel)]="e.nom" disabled>
+                    </mat-form-field>
+                    <mat-form-field *ngIf="lang=='ar'">
+                        <input matInput placeholder="إسم الطفل" type="text" name="nomenfar" required [(ngModel)]="e.nomAr" disabled>
+                      </mat-form-field>
+                    <mat-form-field>
+                      <input matInput [matDatepicker]="pickerEn1" placeholder="Date de Naissance/تاريخ الولادة" name="enf" [(ngModel)]="e.dateNais" disabled>
+                      <mat-datepicker-toggle matSuffix [for]="pickerEn1"></mat-datepicker-toggle>
+                      <mat-datepicker #pickerEn1 [(ngModel)]="e.dateNais"></mat-datepicker>
+                    </mat-form-field>
+                  </form>
+                </div>
+              </mat-expansion-panel>
+    <!-- <b>Grade Actuel:</b> {{enseignantP.dateTitularisation}}<br> -->
+    <button mat-mini-fab color="primary" (click)="ImprimerFichePersonnel(enseignantP.idPers)"><mat-icon>print</mat-icon></button>
+    </div>
+    </div>
+  </div>      
 </div>

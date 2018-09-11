@@ -1,0 +1,37 @@
+<app-index></app-index>
+<div class="container spacer">
+<div class="panel panel-info">
+  <div class="panel-heading">{{'Table.CDemandeVac' | translate}}</div>
+  <div class="panel-body">
+      <mat-tab-group class="demo-tab-group">
+          <mat-tab label="Demandes">
+        <div class="demo-tab-content">
+          <br>
+            <table class="table table-hover" cellspacing="0">
+                <thead>
+                 <tr>
+                <th>{{'Table.CID'| translate}}</th><th>{{'Table.CCIN'| translate}}</th><th>{{'Table.CPrenom'| translate}}&{{'Table.CNom'| translate}}</th><th>{{'Table.CEmail' | translate}}</th><th>{{'SideBar.MSpecialite' | translate}}</th><th *ngIf="role=='DirecteurES'||role=='Admin'">{{'Table.CDetails'| translate}}</th><th *ngIf="role=='AgentGRH'">{{'Table.CAjouterBot' | translate}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let d of pageDemande?.content">
+              <td>{{d.idPers}}</td>
+              <td>{{d.cin}}</td>
+              <td *ngIf="lang=='fr'">{{d.prenom}} {{d.nom}}</td>
+              <td *ngIf="lang=='ar'">{{d.prenomAr}} {{d.nomAr}}</td>
+              <td>{{d.email}}</td>
+              <td *ngIf="d.specialite!=null">{{d.specialite.libelleSp}}</td>
+              <td *ngIf="d.specialite==null">{{d.specialite}}</td>
+              <td *ngIf="role=='DirecteurES'||role=='Admin'"> <button mat-icon-button  (click)="Detail(d)" color="primary" ><mat-icon>list_alt</mat-icon></button></td>
+              <td *ngIf="role=='AgentGRH'"><button mat-icon-button  (click)="Ajouter(d)" color="primary" ><mat-icon>person_add</mat-icon></button></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+    </div>
+  </div>
+</div>
+
+

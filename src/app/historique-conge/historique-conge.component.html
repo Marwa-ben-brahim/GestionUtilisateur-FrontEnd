@@ -1,22 +1,39 @@
 <app-index></app-index>
 <div class="container spacer">
-  <div class="panel panel-primary">
-    <div class="panel-heading">Congés Enseignant</div>
+  <div class="panel panel-info">
+    <div class="panel-heading">{{nom}}</div>
     <div class="panel-body">
-<h3>Historique:</h3>
+  <h3>{{'Table.CHistoriqueCongeDe'|translate }} {{nom}}</h3>
 <br>
-<!--<table class="table table-striped">
+<mat-tab-group class="demo-tab-group">
+    <mat-tab label="Historique/تاريخ العطل">
+      <div class="demo-tab-content">
+        <br>
+  <table class="table table-hover" cellspacing="0">
+    <thead>
   <tr>
-    <th>Date Debut</th><th>Date Fin</th><th>Type Congé</th><th>Nombre Jours</th>
+<th>{{'Table.CID'| translate}}</th><th>{{'Table.CDateDebut' | translate}}</th><th>{{'Table.CDateFin' | translate}}</th><th>{{'SideBar.MTypeC' | translate}}</th><th>{{'Table.CNombreJ' | translate}}</th><th>{{'Table.CDecision' | translate}}</th><th>{{'Table.CReprise' | translate}}</th><th>{{'Table.CmodifierR' | translate}}</th><th>{{'Table.CReprise' | translate}}</th>
   </tr>
-  <tr *ngFor="let c of conges">
+</thead>
+<tbody>
+  <tr *ngFor="let c of pageConge?.content">
+    <td>{{c.idCong}}</td>
     <td>{{c.dateDebut}}</td>
     <td>{{c.dateFin}}</td>
-    <td>{{c.typeconge.libelle}} </td>
-    <td>{{c.typeconge.nbMaxJrs}}</td>
-    <td><a (click)="onEditConge(c.idCong)" class="clickable"><mat-icon>create</mat-icon></a> </td>
-    <td><a (click)="onDeleteConge(c)" class="clickable"><mat-icon>delete_sweep</mat-icon></a> </td>
-  </tr></table>-->
+    <td *ngIf="lang=='fr'">{{c.typeconge.libelleType}}</td>
+    <td *ngIf="lang=='ar'">{{c.typeconge.libelleTypeAr}}</td>
+    <td>{{c.nbJour}}</td>
+    <td *ngIf="lang=='fr'">{{c.valide}}</td>
+    <td *ngIf="lang=='ar'">{{c.valideAr}}</td>
+    <td>{{RepriseResultat(c.reprise)}}{{CanReprise(c.valide)}}</td>
+    <td align="center"><button mat-icon-button  [disabled]="c.reprise||canReprise" (click)="RepriseConge(c)"><mat-icon>alarm_on</mat-icon></button> </td>
+   <td><button mat-icon-button color="primary" [disabled]="!c.reprise" (click)="ImprimerReprise(c)"><mat-icon>print</mat-icon></button></td>
+  </tr> 
+</tbody>
+</table>
+</div>
+</mat-tab>
+</mat-tab-group>
     </div>
   </div>
 </div>

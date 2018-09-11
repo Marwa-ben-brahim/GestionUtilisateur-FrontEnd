@@ -28,6 +28,7 @@
       ],
       "scripts": [
         "../node_modules/chart.js/dist/Chart.js",
+        "../node_modules/chart.js/dist/Chart.min.js",
         "../node_modules/hammerjs/hammer.min.js",
         "../node_modules/waves/dist/waves.js",
         "../node_modules/jquery/dist/jquery.min.js",

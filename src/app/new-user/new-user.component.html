@@ -1,33 +1,149 @@
 <app-index></app-index>
 <div class="container spacer">
-  <div class="panel panel-primary">
-  <div class="panel-heading">Nouveau Utilisateur</div>
+  <div class="panel panel-default">
+  <div class="panel-heading">{{'SideBar.SMAjouterUt'| translate}}</div>
   <div class="panel-body">
+      <div class="row">
+  <div class="col-xs-12 col-sm-6 col-md-4">
     <form #flogin>
+    <div *ngIf="lang=='fr'">
+    <mat-form-field>
+    <mat-select placeholder="Type de Personnel" [(value)]="type" (change)="AfficherPersonnel()" required>
+    <mat-option *ngFor="let t of TypePersonnel" [value]="t.value">
+    {{ t.value }}
+    </mat-option>
+    </mat-select>
+    </mat-form-field>
     <div class="form-group">
-      <mat-form-field>
-        <mat-select placeholder="Choisir Personnel" [(value)]="personnel">
+      <mat-form-field *ngIf="type=='Enseignant'">
+        <mat-select placeholder="Enseignant" [(value)]="personnel">
           <mat-option *ngFor="let p of personnels" [value]="p">
             {{p.prenom+"   "+ p.nom }}
           </mat-option>
         </mat-select>
       </mat-form-field>
+      <mat-form-field *ngIf="type=='Administratif'">
+            <mat-select placeholder="Administratif" [(value)]="personnel">
+              <mat-option *ngFor="let p of personnels" [value]="p">
+                {{p.prenom+"   "+ p.nom }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
     </div>
         <div class="form-group">
           <mat-form-field>
-              {{concatination()}}
-        <input  matInput placeholder="Login" #login [(value)]="loginU" name="login">
+        <input  matInput placeholder="Login" #login [(ngModel)]="loginU" name="login">
           </mat-form-field>
         </div>
       <div class="form-group">
       <mat-form-field>
-        <input  matInput placeholder="Mot de Passe:" [(value)]="motpassU" [type]="hide ? 'password' : 'text'" #motpass name="motpasse">
+        <input  matInput placeholder="Mot de Passe" [(ngModel)]="motpassU" [type]="hide ? 'password' : 'text'" #motpass name="motpasse">
         <mat-icon matSuffix class="clickable" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </mat-form-field>
+      <mat-icon matSuffix class="clickable" (click)="generate(motpassU)">settings</mat-icon>
       </div>
-      <button mat-raised-button color="primary" (click)="saveUser()">Enregistrer</button>
-      <button mat-raised-button color="primary" (click)="flogin.reset()">Annuler</button>
+      <div class="form-group">
+        <mat-form-field>
+            <mat-select placeholder="Rôle" [(value)]="role" required name="roleU">
+             <mat-option *ngFor="let r of roles" [value]="r" name="roleU">
+                {{ r.type }}
+              </mat-option>
+           </mat-select>
+         </mat-form-field>
+      </div>
+      </div>
+      <div *ngIf="lang=='ar'">
+            <mat-form-field>
+            <mat-select placeholder="نوع العون" [(value)]="type" (change)="AfficherPersonnel()" required>
+            <mat-option *ngFor="let t of TypePersonnelAr" [value]="t.value" >
+            {{ t.value }}
+            </mat-option>
+            </mat-select>
+            </mat-form-field>
+            <div class="form-group">
+              <mat-form-field>
+                <mat-select placeholder={{type}} [(value)]="personnel">
+                  <mat-option *ngFor="let p of personnels" [value]="p">
+                    {{p.prenomAr+"   "+ p.nomAr }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+                <div class="form-group">
+                  <mat-form-field>
+                <input  matInput placeholder="إسم المستخدم" #login [(ngModel)]="loginU" name="login">
+                  </mat-form-field>
+                </div>
+              <div class="form-group">
+              <mat-form-field>
+                <input  matInput placeholder="كلمة السر" [(ngModel)]="motpassU" [type]="hide ? 'password' : 'text'" #motpass name="motpasse">
+                <mat-icon matSuffix class="clickable" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </mat-form-field>
+              <mat-icon matSuffix class="clickable" (click)="generate(motpassU)">settings</mat-icon>
+              </div>
+              <div class="form-group">
+                <mat-form-field>
+                    <mat-select placeholder="وظيفة" [(value)]="role" required name="roleU">
+                     <mat-option *ngFor="let r of roles" [value]="r" name="roleU">
+                        {{ r.type }}
+                      </mat-option>
+                   </mat-select>
+                 </mat-form-field>
+              </div>
+              </div>
+      <button mat-raised-button color="primary" (click)="saveUser()">{{'Table.CAjouterBot'| translate}}</button>
+      <button mat-raised-button color="primary" (click)="flogin.reset()">{{'Table.CAnnuler'| translate}}</button>
     </form>
+    </div>
+    <div id="team" *ngIf="personnel!=null">
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+            <div class="mainflip">
+                <div class="frontside">
+                    <div class="card" >
+                        <div class="card-body text-center">
+                            <p><img class=" img-fluid" src="../../assets/images/user_pic.png" alt="card image"></p>
+                            <h4 class="card-title">{{personnel.prenom+" "+personnel.nom}}</h4>
+                            <p class="card-text">{{personnel.prenom+" ben "+personnel.nompere+" "+personnel.nom +" neé le " +personnel.datenaissance}}</p>
+                            <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="backside">
+                    <div class="card">
+                        <div class="card-body text-center mt-4">
+                            <h4 class="card-title">{{personnel.prenom+" "+personnel.nom}}</h4>
+                            <p class="card-text"><strong>Login:</strong> {{loginU}} <strong>Mot de Passe:</strong> {{motpassU}} <br><strong>E-mail:</strong>{{personnel.email}}  <strong>Télephone:</strong>{{personnel.telephone}}              </p>
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <a class="social-icon text-xs-center" target="_blank" href="/">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                        <i class="fa fa-skype"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                        <i class="fa fa-google"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 </div>
 </div>

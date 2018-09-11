@@ -2,7 +2,8 @@ import {Personnel} from "./model.personnel";
 
 export class Enfant {
   num:number;
-  nom:string;
-  date_nais:Date;
+  nom:string="";
+  nomAr:string="";
+  dateNais:Date=new Date();
   personnel:Personnel=null;
 }

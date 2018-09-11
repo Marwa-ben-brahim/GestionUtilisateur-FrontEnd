@@ -15,13 +15,13 @@ export class EnseignantPermanentServices {
     return this.http.get("http://localhost:8080/chercherEnseignantPrenom?mp=" + motCle + "&size=" + size + "&page=" + page)
       .map(resp => resp.json())
   }
-  getEnseignantPermanentDepartement(motCle:number, page: number, size: number) {
-    return this.http.get("http://localhost:8080/chercherEnseignantDepartement?mc=" + motCle + "&size=" + size + "&page=" + page)
+  getEnseignantPermanentSansCompte() {
+    return this.http.get("http://localhost:8080/chercherEnseignantSansCompte")
       .map(resp => resp.json())
   }
   
-  getEnseignantPermanent(matricule: number) {
-    return this.http.get("http://localhost:8080/EnseignantPermanent/" + matricule)
+  getEnseignantPermanent(idPers: number) {
+    return this.http.get("http://localhost:8080/EnseignantPermanent/" + idPers)
       .map(resp => resp.json())
   }
 
@@ -31,20 +31,20 @@ export class EnseignantPermanentServices {
   }
 
   updateEnseignantPermanent(enseignantpermanent: EnseignantPermanent) {
-    return this.http.put("http://localhost:8080/ModifierEnseignantPermanent/" + enseignantpermanent.matricule, enseignantpermanent)
+    return this.http.put("http://localhost:8080/ModifierEnseignantPermanent/" + enseignantpermanent.idPers, enseignantpermanent)
       .map(resp => resp.json())
   }
 
-  deleteEnseignantPermanent(matricule: number) {
-    return this.http.delete("http://localhost:8080/SupprimerEnseignantPermanent/" + matricule)
+  deleteEnseignantPermanent(idPers: number) {
+    return this.http.delete("http://localhost:8080/SupprimerEnseignantPermanent/" + idPers)
       .map(resp => resp.json())
   }
   getAllEnseignantPermanents() {
     return this.http.get("http://localhost:8080/EnseignantsPermanents")
       .map(resp => resp.json())
   }
-  ImprimerEnseignantPermanent(idDep: number) {
-    return this.http.get("http://localhost:8080/ListePersonnelDepartement?mc="+idDep)
+  ImprimerEnseignantPermanent(idDep: number,type:string) {
+    return this.http.get("http://localhost:8080/ListePersonnelDepartement?mc="+idDep+"&mp="+type)
       .map(resp => resp.json())
   }
   

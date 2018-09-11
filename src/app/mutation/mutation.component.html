@@ -1,64 +1,34 @@
 <app-index></app-index>
 <div class="container spacer">
-<div class="panel panel-primary">
-  <div class="panel-heading">Ajouter Mutation</div>
+<div class="panel panel-default">
+  <div class="panel-heading">{{'SideBar.SMMutation1' | translate}}</div>
   <div class="panel-body">
-    <div>
-      <form class="form-inline">
-        <mat-form-field>
-          <mat-select placeholder="Personnel" [(value)]="personnel">
-            <mat-option *ngFor="let p of personnels " [value]="p">
-              {{ p.prenom +" "+p.nom }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field><br>
-        <mat-form-field>
-          <mat-select placeholder="Organisme d'accueil" [(value)]="orgAccueil">
-            <mat-option *ngFor="let or of orgAccueils" [value]="or">
-              {{or.libelleOrg}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field><br>
-        <mat-form-field>
-          <mat-select placeholder="Type" [(value)]="typeMutation" [(ngModel)]="mutation.typemutation">
-            <mat-option *ngFor="let tm of typeMutations" [(value)]="typeMutation">
-              {{tm.designation}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field><br>
-        <mat-form-field>
-          <input matInput [matDatepicker]="picker1" placeholder="Date de Mutation" name="dateMut" [(ngModel)]="mutation.date_mut">
-          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-          <mat-datepicker #picker1></mat-datepicker>
-        </mat-form-field><br>
-        <button  mat-icon-button (click)="ajouter()">
-          <mat-icon>add_circle</mat-icon></button>
-      </form>
-    </div>
-  </div>
-</div>
-
-  <div class="panel panel-default">
-    <div class="panel-heading">Afficher Mutation</div>
-    <div class="panel-body">
-      <mat-form-field>
-        <input matInput placeholder="Mutation" [(ngModel)]="motCle">
-      </mat-form-field>
-      <button mat-icon-button color="" (click)="doSearch()">
-        <mat-icon>search</mat-icon></button>
-      <table class="table table-striped">
-        <tr>
-          <th>ID</th><th>Personnel</th><th>Type de Mutation</th><th>Organisme d'accueil</th><th>Date de Mutatuion</th><th>Modifier</th><th>Supprimer</th>
-        </tr>
-        <tr *ngFor="let m of mutations">
-          <td>{{m.idMut}}</td>
-          <td>{{m.personnel.prenom+"  "+m.personnel.nom}}</td>
-          <td>{{m.typemutation.designation}}</td>
-          <td>{{m.organismeAccueil.libelleOrg}}</td>
-          <td>{{m.date_mut}}</td>
-          <td><a (click)="onEditMutation(m.idMut)" class="clickable"><mat-icon>create</mat-icon></a> </td>
-          <td><a (click)="onDeleteMutation(m)" class="clickable"><mat-icon color="#B00020">delete_sweep</mat-icon></a> </td>
-        </tr></table>
+      <mat-tab-group class="demo-tab-group">
+          <mat-tab label="Liste des Personnels">
+            <div class="demo-tab-content">
+              <br>
+                <table class="table table-hover" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>{{'Table.CID'| translate}}</th><th>{{'Table.CMatricule'| translate}}</th><th>{{'Table.CCIN'| translate}}</th><th>{{'Table.CPrenom'| translate}}&{{'Table.CNom'| translate}}</th><th>{{'Table.CTelephone'| translate}}</th><th>{{'SideBar.MMutation' | translate}}</th><!--<th>Liste des Mutations</th>-->
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let e of pageEnseignant?.content">
+                  <td>{{e.idPers}}</td>
+                  <td>{{e.matricule}}</td>
+                  <td>{{e.cin}}</td>
+                  <td *ngIf="lang=='fr'">{{e.prenom+" "+e.nom }}</td>
+                  <td *ngIf="lang=='ar'">{{e.prenomAr+" "+e.nomAr }}</td>
+                  <td>{{e.telephone}}</td>
+                  <td align="center"><button mat-icon-button (click)="ajouterMutation(e)"><mat-icon>exit_to_app</mat-icon></button> </td>
+                  <!-- <td align="center"><button mat-icon-button (click)="EtatMutation(e)"><mat-icon>update</mat-icon></button> </td> -->
+                </tr>
+              </tbody>
+               </table>
+            </div>
+          </mat-tab>
+          </mat-tab-group>
     </div>
   </div>
 </div>

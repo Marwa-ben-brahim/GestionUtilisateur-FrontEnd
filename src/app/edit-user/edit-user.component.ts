@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PersonnelServices} from '../../services/personnel.services';
 import {Personnel} from "../../model/model.personnel";
+import { RoleServices } from '../../services/role.services';
+import { Role } from '../../model/model.role';
 
 @Component({
   selector: 'app-edit-user',
@@ -13,36 +15,43 @@ export class EditUserComponent implements OnInit {
   personnel:Personnel=new Personnel();
   personnels:Array<Personnel>=new Array<Personnel>();
   hide = true;
+  role:Role=new Role();
+  roles:Array<Role>=new Array<Role>();
+  roleModifiable:boolean=false;
+  nom:string;
+  lang:string;
   constructor(public activatedRoute:ActivatedRoute,
               public personnelService:PersonnelServices,
+              private roleServices:RoleServices,
               public router:Router)
   {
   this.idUser=activatedRoute.snapshot.params['idUser'];
+  this.lang=sessionStorage.getItem("lang");
   }
-
   ngOnInit() {
     this.personnelService.getPersonnel(this.idUser)
       .subscribe(data=> {
         this.personnel = data;
+        this.role=this.personnel.role;
+        if(this.lang=="fr")
+        {
+          this.nom=this.personnel.prenom+" "+this.personnel.nom;
+        }
+        else if(this.lang=="ar")
+        {
+          this.nom=this.personnel.prenomAr+" "+this.personnel.nomAr;
+        }
       },err=>{
       console.log(err);
       })
-    this.AfficherPersonnel();
+      this.AfficherRole();
   }
-  AfficherPersonnel()
-  {
-    this.personnelService.getAllPersonnel()
-      .subscribe(data=>{
-        this.personnels=data;
-        console.log(data);
-      },err=>{
-        console.log(err);
-      });
-  }
-  updateUser(){
+updateUser()
+{
+  this.personnel.role=this.role;
+  console.log(this.personnel.role);
 this.personnelService.updatePersonnel(this.personnel)
   .subscribe(data=>{
-    console.log(data);
     alert("Mise à jour effectuée");
     this.router.navigate(['users']);
   },err=>{
@@ -50,5 +59,21 @@ this.personnelService.updatePersonnel(this.personnel)
     alert("Probléme");
   })
   }
-annuler(){}
+  AfficherRole()
+  {
+    this.roleServices.allRoles()
+      .subscribe(data=>{
+      this.roles=data;
+      },err=>{
+        console.log(err);
+      });
+  }
+  ModifierRole()
+  {
+  this.roleModifiable=true;
+  }
+annuler()
+{
+  this.router.navigate(['users']);
+}
 }

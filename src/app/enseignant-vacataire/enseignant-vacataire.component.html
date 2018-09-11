@@ -1,9 +1,5 @@
 <!------ Include the above in your HEAD tag ---------->
-
-
 <div class="center"><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block">Demande Vacation</button></div>
-
-
 <!-- line modal -->
 <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -13,10 +9,12 @@
 			<h3 class="modal-title" id="lineModalLabel" align="center">Demande Vacation Enseignement</h3>
 		</div>
 		<div class="modal-body">
-			
             <!-- content goes here -->
 			<form id="upload-file-form">
-                  
+        <mat-radio-group name="typeneseig" [(ngModel)]="demandeVacation.typeDemande">
+          <mat-radio-button value="EnseignantFonctionnaire">Enseignant Fonctionnaire de l'etat</mat-radio-button>
+          <mat-radio-button value="EnseignantLibre">Enseignant Libre</mat-radio-button>
+        </mat-radio-group><br>
                         <label for="cinh">Votre CIN *</label>
                         <input type="text" id="cinh" name="cin" placeholder="Votre CIN.." [(ngModel)]="demandeVacation.cin">
                         <label for="country">Veillez renseigner votre civilité *</label>
@@ -25,7 +23,11 @@
                           <option value="madame">Mme.</option>
                           <option value="mademoiselle">Mlle.</option>
                         </select>
-                  
+                        <label for="fname">Sexe *</label>
+                        <mat-radio-group>
+                          <mat-radio-button value="F">Femme</mat-radio-button>
+                          <mat-radio-button value="H">Homme</mat-radio-button>
+                        </mat-radio-group><br>
                       <label for="fname">Nom *</label>
                       <input type="text" id="fname" name="firstname" placeholder="Votre Nom.." [(ngModel)]="demandeVacation.nom">
                   
@@ -71,12 +73,17 @@
                   
                       <label for="cdepost">Code Postal *</label>
                       <input type="text" id="cdepost" name="codePostal" placeholder="Votre code postal.." [(ngModel)]="demandeVacation.codePostal">
-                  
+                      <label for="specialite">Specialité *</label>
+                        <select placeholder="Spécialité" [(ngModel)]="specialite" name="spec" required>
+                          <option *ngFor="let s of specialites" [ngValue]="s" name="spec">
+                            {{ s.libelleSp }}
+                          <option>
+                        </select>
                       <label for="subject">Profil recherché *</label>
                       <textarea id="subject" name="subject" placeholder="Votre profil recherché.." style="height:100px" [(ngModel)]="demandeVacation.profilRech"></textarea>
               <div class="form-group">
                 <label for="exampleInputFile">Importez vos diplômes..</label>
-                <input type="file" id="exampleInputFile"name="uploadfile"accept="*"value="uploadfile"/>
+                <input type="file" id="exampleInputFile"name="uploadfile" accept="*" (change)="onFileSelected($event)" value="uploadfile"/>
               </div>
               <div class="checkbox">
               </div>
@@ -101,32 +108,5 @@
 	</div>
   </div>
 </div>
-<script>
-    $(document).ready(function() {
-          $("#upload-file-input").on("change", uploadFile);
-        });
-    /**
-     * Upload the file sending it via Ajax at the Spring Boot server.
-     */
-    function uploadFile() {
-      $.ajax({
-        url: "/uploadFile",
-        type: "POST",
-        data: new FormData($("#upload-file-form")[0]),
-        enctype: 'multipart/form-data',
-        processData: false,
-        contentType: false,
-        cache: false,
-        success: function () {
-    // Handle upload success
-    // ...
-        },
-        error: function () {
-    // Handle upload error
-    // ...
-    }
-      });
-    } // function uploadFile
-        
-    </script>
+
                           

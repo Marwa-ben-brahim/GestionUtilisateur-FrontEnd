@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef,ViewChild, OnDestroy } from '@angular/core';
 import {EnseignantPermanentServices} from "../../services/enseignantpermanent.services";
 import {Http} from "@angular/http";
 import {Router} from "@angular/router";
@@ -6,6 +6,14 @@ import {EnseignantPermanent} from "../../model/model.enseignantpermanent";
 import { AdministratifServices } from '../../services/administratif.services';
 import { Departement } from '../../model/model.departement';
 import { DepartementServices } from '../../services/departement.services';
+import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Subscription } from 'rxjs/Subscription';
+import * as $ from 'jquery';
+import 'datatables.net';
+import 'datatables.net-bs4';
+import { PersonnelServices } from '../../services/personnel.services';
+import { ImpressionServices } from '../../services/Impression.services';
 
 @Component({
   selector: 'app-liste-enseignant-permanent',
@@ -18,77 +26,54 @@ export class ListeEnseignantPermanentComponent implements OnInit {
   pageEnseignant:any;
   motCle:string="";
   currentPage:number=0;
-  size:number=5;
-  type:string="";
+  size:number=2000;
   departement:Departement=new Departement();
   departements:Array<Departement>=new Array<Departement>();
-  constructor(private departementServices:DepartementServices,private adminService:AdministratifServices,private enseingnantpermanentService:EnseignantPermanentServices, public http: Http, public router: Router) { }
+  motCle1:string="";
+  currentPageA:number=0;
+  pagesA:Array<number>;
+  pageAdministratif:any;
+  dataTable: any;
+  lang:string;
+  constructor(private departementServices:DepartementServices,
+    private adminService:AdministratifServices,
+    private enseingnantpermanentService:EnseignantPermanentServices,
+    private personnelServices:PersonnelServices,
+    private imprimerServices:ImpressionServices,
+    private chRef: ChangeDetectorRef, 
+    private http: HttpClient, public router: Router) 
+    { 
+     // this.dataSource = new MatTableDataSource();
+     this.lang=sessionStorage.getItem("lang");
+    }
 
   ngOnInit() {
    this.chercherDepartement();
+   this.doSearchEng();
   }
-  chercherEnseignant()
-  {this.type="enseignant";
-  this.pageEnseignant=null;
-  this.pages=null;
-  }
-  chercherAdministratif()
-  {
-    this.type="administratif";  
-  this.pageEnseignant=null;
-  this.pages=null;
-}
-  gotopage(i:number)
-  {
-    this.currentPage=i;
-    this.doSearch();
-  }
-  gotopageD(i:number)
-  {
-    this.currentPage=i;
-    this.doSearchD();
-  }
-  Imprimer()
-  {
-    this.enseingnantpermanentService.ImprimerEnseignantPermanent(this.departement.idDep)
-    .subscribe(data=>{
-      console.log(data);
-    },err=>{
-      console.log(err);
-    })
-  }
-  doSearch()
-  {
-  if(this.type=="enseignant")
-{
-  this.enseingnantpermanentService.getEnseignantPermanents(this.motCle,this.currentPage,this.size)
-    .subscribe(data=>{
-      this.pageEnseignant=data;
-      this.pages=new Array(data.totalPages);
-      console.log(data);
-    },err=>{
-      console.log(err);
-    })
-}
-else
-{
-  this.adminService.getAdministratifs(this.motCle,this.currentPage,this.size)
-      .subscribe(data=>{
-        this.pageEnseignant=data;
-        this.pages=new Array(data.totalPages);
-        console.log(data);
+  doSearchEng()
+  { 
+     this.enseingnantpermanentService.getEnseignantPermanents(this.motCle,this.currentPage,this.size)
+        .subscribe((data: any[]) => {
+          this.pageEnseignant = data;
+          console.log(data);
+          // You'll have to wait that changeDetection occurs and projects data into 
+          // the HTML template, you can ask Angular to that for you ;-)
+          this.chRef.detectChanges();
+          // Now you can use jQuery DataTables :
+          const table: any = $('table');
+          this.dataTable = table.DataTable();   
       },err=>{
         console.log(err);
       })
-}
   }
-  onEditEnseignant(matricule:number){
-    this.router.navigate(['EditEnseignantP',matricule]);
+  onEditEnseignant(idPers:number){
+    this.router.navigate(['EditEnseignantP',idPers]);
   }
-  onDetailsEnseignant(matricule:number) {
-    this.router.navigate(['DetailsEnseignantP',matricule]);
+  onDetailsEnseignant(idPers:number) {
+    this.router.navigate(['DetailsEnseignantP',idPers]);
+  }
 
-  }
   chercherDepartement()
   {
     this.departementServices.allDepartements()
@@ -100,15 +85,22 @@ else
         console.log(err);
       })
   }
-  doSearchD()
+  Imprimer(idPers:number,sexe:string)
   {
-    this.enseingnantpermanentService.getEnseignantPermanentDepartement(this.departement.idDep,this.currentPage,this.size)
-    .subscribe(data=>{
-      this.pageEnseignant=data;
-      this.pages=new Array(data.totalPages);
-      console.log(data);
-    },err=>{
-      console.log(err);
-    })
+this.personnelServices.ImprimerAttestation(idPers,sexe)
+.subscribe(data=>{
+  console.log(data);
+},err=>{
+  console.log(err);
+})
   }
+  ImprimerReprise(idPers:number)
+  {
+this.imprimerServices.ImprimerRepriseTravail(idPers)
+.subscribe(data=>{
+  console.log(data);
+},err=>{
+  console.log(err);
+})
+  }  
 }

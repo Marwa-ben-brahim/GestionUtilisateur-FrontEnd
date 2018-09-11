@@ -1,6 +1,12 @@
 ///<reference path="../../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
+import { CongeMensuelComponent } from '../conge-mensuel/conge-mensuel.component';
+import { MatDialog } from '@angular/material';
+import { TranslateService } from '@ngx-translate/core';
+import { ModalImportationComponent } from '../modal-importation/modal-importation.component';
+import { ListeEtatComponent } from '../liste-etat/liste-etat.component';
+import { ImpressionServices } from '../../services/Impression.services';
 
 @Component({
   selector: 'app-side-bar',
@@ -16,15 +22,24 @@ private $LEFT_COL;
 private $RIGHT_COL;
 private $NAV_MENU;
 private $FOOTER;
-messages=
-[
-  {value:'Ajouter Personnel'},
-{value:'Consulter Liste des Personnels'}
-]
-  constructor() { }
+role:string;
+matricule:number;
+lang:string;
+nomAr:string;
+  constructor(public dialog: MatDialog,
+    private translate: TranslateService,
+    private impressionServices:ImpressionServices) 
+    {
+    this.lang=sessionStorage.getItem("lang");
+    translate.use(this.lang);
+     }
 
   ngOnInit() {
     this.nom=sessionStorage.getItem('nom');
+    this.role=sessionStorage.getItem('role');
+    this.matricule=Number(sessionStorage.getItem('idUser'));
+    this.nomAr=sessionStorage.getItem('nomAr');
+    
   }
   anchorClicked(event: MouseEvent)
   {
@@ -36,7 +51,7 @@ messages=
       if ($li.is('.active')) {
           $li.removeClass('active active-sm');
               $('ul:first', $li).slideUp(function() {
-                  //this.setContentHeight();
+                 // this.setContentHeight();
               });
           } else {
               // prevent closing menu if we are on child menu
@@ -71,7 +86,7 @@ messages=
           if ($li.is('.active')) {
               $li.removeClass('active active-sm');
               $('ul:first', $li).slideUp(function() {
-                  this.setContentHeight();
+                 //this.setContentHeight();
               });
           } else {
               // prevent closing menu if we are on child menu
@@ -83,7 +98,7 @@ messages=
               $li.addClass('active');
 
               $('ul:first', $li).slideDown(function() {
-                  this.setContentHeight();
+                //this.setContentHeight();
               });
           }
       });
@@ -103,7 +118,7 @@ messages=
           this.setContentHeight();
       });
 
-  }   
+  }  
   setContentHeight() {
       // reset height
       this.$RIGHT_COL.css('min-height', $(window).height());
@@ -117,5 +132,39 @@ messages=
       contentHeight -= this.$NAV_MENU.height() + footerHeight;
 
       this.$RIGHT_COL.css('min-height', contentHeight);
-  };
+  }
+  congeMois(type:string)
+  {
+    let dialogRef = this.dialog.open(CongeMensuelComponent, {data:{name:type}});
+  }
+  ListePersonnel(type:string)
+  {
+      if(type=="Actif")
+      {
+        this.impressionServices.ImprimerListePersonnelActif()
+        .subscribe(data => {
+            console.log(data);
+          }, err => {
+            console.log(err);
+          })
+      }
+      else if(type=="Inactif")
+      {
+        this.impressionServices.ImprimerListePersonnelInactif()
+        .subscribe(data => {
+            console.log(data);
+          }, err => {
+            console.log(err);
+          })
+      }
+      else
+      {
+        let dialogRef = this.dialog.open(ListeEtatComponent, {data:{name:type}});
+      }
+ 
+  }
+  importer()
+  {
+    let dialogRef = this.dialog.open(ModalImportationComponent);
+  }
 }
